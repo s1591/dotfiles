@@ -1,0 +1,154 @@
+# Inserts a blank line between shell prompts
+add_newline = true
+
+
+[character]
+success_symbol = "[󰭎 ](purple)"
+error_symbol = "[](bold red)"
+#🚀 #✗
+#λ  #
+#⚡️ #
+#💀 #
+#  #
+#  #
+#  #
+
+#Make prompt a single line 
+[line_break]
+disabled = true
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[shell]
+fish_indicator = "{󰈺 }"
+powershell_indicator = "{_}"
+zsh_indicator = "{zsh}"
+bash_indicator = "{bsh}"
+nu_indicator = "{nu}"
+xonsh_indicator = "{xsh}"
+unknown_indicator = "{mystery shell}"
+style = "cyan bold"
+disabled = false
+
+
+# [localip]
+# ssh_only = false
+# format = "@[$localipv4](bold red) "
+# disabled = false
+
+
+[username]
+# format = "$user@"
+# format = "🚀@" #""
+format = " @"
+show_always=true
+style_root = "bold red"
+
+[hostname]
+disabled = false
+format = "$hostname in " # "$hostname 🚀 in "
+ssh_only = false
+# style = "bold dimmed red"
+trim_at = "-"
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+# style = "bold #f57800"
+style = "purple"
+read_only = " 🔒"
+read_only_style = "red"
+
+[git_status]
+ahead = "⇡${count}"
+behind = "⇣${count}"
+deleted = "x"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+style = "white"
+
+[cmd_duration]
+disabled = false
+format = "took [$duration]($style) "
+min_time = 1
+
+[battery]
+full_symbol = "󰁹 "
+charging_symbol = "󰂄 "
+discharging_symbol ="󰂃 "
+unknown_symbol = "󰂑 "
+empty_symbol = "󰂎 "
+disabled = false
+[[battery.display]]
+threshold = 100
+style = "bold red"
+
+[aws]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+# [package]
+# symbol = " "
+
+[perl]
+symbol = " "
+
+[php]
+symbol = " "
+
+[python]
+symbol = " "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[swift]
+symbol = "ﯣ "
+
+[lua]
+symbol= " "
+
+
+
+
