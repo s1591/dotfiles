@@ -180,7 +180,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 10.0
+  size: 15.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -607,6 +607,160 @@ Nord: &Nord
       white:   '#282a2e'
 
 
+  rose-pine: &rose-pine
+    primary:
+      foreground: "#e0def4"
+      background: "#191724"
+      dim_foreground: "#908caa"
+      bright_foreground: "#e0def4"
+
+    cursor:
+      text: "#e0def4"
+      cursor: "#524f67"
+
+    vi_mode_cursor:
+      text: "#e0def4"
+      cursor: "#524f67"
+
+    search.matches:
+      foreground: "#908caa"
+      background: "#26233a"
+
+    search.focused_match:
+      foreground: "#191724"
+      background: "#ebbcba"
+
+    hints.start:
+      foreground: "#908caa"
+      background: "#1f1d2e"
+
+    hints.end:
+      foreground: "#6e6a86"
+      background: "#1f1d2e"
+
+    line_indicator:
+      foreground: "None"
+      background: "None"
+
+    footer_bar:
+      foreground: "#e0def4"
+      background: "#1f1d2e"
+
+    selection:
+      text: "#e0def4"
+      background: "#403d52"
+
+    normal:
+      black: "#26233a"
+      red: "#eb6f92"
+      green: "#31748f"
+      yellow: "#f6c177"
+      blue: "#9ccfd8"
+      magenta: "#c4a7e7"
+      cyan: "#ebbcba"
+      white: "#e0def4"
+
+    bright:
+      black: "#6e6a86"
+      red: "#eb6f92"
+      green: "#31748f"
+      yellow: "#f6c177"
+      blue: "#9ccfd8"
+      magenta: "#c4a7e7"
+      cyan: "#ebbcba"
+      white: "#e0def4"
+
+    dim:
+      black: "#6e6a86"
+      red: "#eb6f92"
+      green: "#31748f"
+      yellow: "#f6c177"
+      blue: "#9ccfd8"
+      magenta: "#c4a7e7"
+      cyan: "#ebbcba"
+      white: "#e0def4"
+
+  Catppuccin-Mocha: &Catppuccin-Mocha
+    colors:
+    primary:
+        background: "#1E1E2E" # base
+        foreground: "#CDD6F4" # text
+        # Bright and dim foreground colors
+        dim_foreground: "#CDD6F4" # text
+        bright_foreground: "#CDD6F4" # text
+
+    # Cursor colors
+    cursor:
+        text: "#1E1E2E" # base
+        cursor: "#F5E0DC" # rosewater
+    vi_mode_cursor:
+        text: "#1E1E2E" # base
+        cursor: "#B4BEFE" # lavender
+
+    # Search colors
+    search:
+        matches:
+            foreground: "#1E1E2E" # base
+            background: "#A6ADC8" # subtext0
+        focused_match:
+            foreground: "#1E1E2E" # base
+            background: "#A6E3A1" # green
+        footer_bar:
+            foreground: "#1E1E2E" # base
+            background: "#A6ADC8" # subtext0
+
+    # Keyboard regex hints
+    hints:
+        start:
+            foreground: "#1E1E2E" # base
+            background: "#F9E2AF" # yellow
+        end:
+            foreground: "#1E1E2E" # base
+            background: "#A6ADC8" # subtext0
+
+    # Selection colors
+    selection:
+        text: "#1E1E2E" # base
+        background: "#F5E0DC" # rosewater
+
+    # Normal colors
+    normal:
+        black: "#45475A" # surface1
+        red: "#F38BA8" # red
+        green: "#A6E3A1" # green
+        yellow: "#F9E2AF" # yellow
+        blue: "#89B4FA" # blue
+        magenta: "#F5C2E7" # pink
+        cyan: "#94E2D5" # teal
+        white: "#BAC2DE" # subtext1
+
+    # Bright colors
+    bright:
+        black: "#585B70" # surface2
+        red: "#F38BA8" # red
+        green: "#A6E3A1" # green
+        yellow: "#F9E2AF" # yellow
+        blue: "#89B4FA" # blue
+        magenta: "#F5C2E7" # pink
+        cyan: "#94E2D5" # teal
+        white: "#A6ADC8" # subtext0
+
+    # Dim colors
+    dim:
+        black: "#45475A" # surface1
+        red: "#F38BA8" # red
+        green: "#A6E3A1" # green
+        yellow: "#F9E2AF" # yellow
+        blue: "#89B4FA" # blue
+        magenta: "#F5C2E7" # pink
+        cyan: "#94E2D5" # teal
+        white: "#BAC2DE" # subtext1
+
+    indexed_colors:
+        - { index: 16, color: "#FAB387" }
+        - { index: 17, color: "#F5E0DC" }
+
+
 ######################################################################
 ## SET THEME: Choose ONE color scheme from those in the above list. ##
 ## ###################################################################
@@ -622,8 +776,10 @@ Nord: &Nord
 # *SolarizedDark
 # *TomorrowNight
 # *Sakura
-colors: *Palenight
-   
+# *rose-pine
+# *Catppuccin-Mocha
+colors: *Catppuccin-Mocha
+
 
 #######################################
 ##       END OF COLOR SCHEMES        ##
@@ -701,7 +857,8 @@ live_config_reload: true
 shell:
   program: /bin/fish
   args:
-     - -iC ~/Documents/scripts/pipes/pipes.sh && colorscript -r
+    #- -iC ~/Documents/scripts/pipes/pipes.sh && colorscript -r
+    - -iC ~/Documents/scripts/pipes/pipes.sh && ~/Documents/scripts/random_quote
 
 # Startup directory
 #
