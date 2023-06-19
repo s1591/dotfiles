@@ -779,6 +779,7 @@ Nord: &Nord
 # *rose-pine
 # *Catppuccin-Mocha
 colors: *Catppuccin-Mocha
+# colors: *rose-pine
 
 
 #######################################

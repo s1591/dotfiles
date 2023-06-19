@@ -3,6 +3,7 @@ alias lofi=$HOME/Documents/scripts/lofi
 alias nfetch=$HOME/Documents/scripts/nerdfetch
 #-------------------------------------------------------------------
 alias vim="nvim"
+alias qq="/home/sumanth0x637/Documents/scripts/random_quote"
 alias hx="helix"
 alias jshell="/home/sumanth0x637/Documents/JShell_jdk20+36_linux/bin/jshell"
 alias dnote="~/Documents/scripts/dnote"
@@ -12,7 +13,7 @@ alias pyt="~/Documents/scripts/pyt.py"
 alias neofetch="neofetch --ascii ~/.config/neofetch/logo"
 alias get_proxy="~/Documents/proxy/get_one.py"
 alias get_ip="~/Documents/vsprojects/python/get_ip.py"
-alias agg="~/Documents/scripts/agg --font-dir '/usr/share/fonts/TTF' --font-family 'JetBrainsMono Nerd Font' --fps-cap 120 --font-size 16"
+alias agg="~/Documents/scripts/agg --font-dir '/usr/share/fonts/TTF' --font-family 'JetBrainsMono NF' --fps-cap 120 --font-size 16"
 alias pvpn="protonvpn-cli"
 alias jnb="jupyter notebook --no-browser"
 alias jlnb="jupyter-lab --no-browser"
