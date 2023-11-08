@@ -2,7 +2,7 @@ set -e fish_user_paths
 set -U fish_user_paths $HOME/.local/bin /usr/local/go/bin $HOME/.cargo/bin $HOME/.dotnet/tools $HOME/go/bin /usr/lib/go/src $fish_user_paths
 #set PATH $PATH:$HOME/.local/bin:$HOME/.emacs.d/bin
 set EDITOR "nvim"
-set -Ux SUDO_ASKPASS "/usr/bin/ksshaskpass"
+# set -Ux SUDO_ASKPASS "/usr/bin/ksshaskpass"
 set DOTNET_ROOT	"/usr/share/dotnet/sdk"
 set DOTFILES "$HOME/Documents/dotfiles"
 set WINEPREFIX "$HOME/.wine"
