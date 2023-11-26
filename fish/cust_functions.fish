@@ -290,15 +290,3 @@ function dec
 	age -d $argv[1]
 end
 
-function set_gopath
-	set -Ux GOPATH $PWD
-	echo "$GOPATH was now GOPATH"
-end
-
-function ngopath
-	set -Ux GOPATH $HOME/go
-	echo "$GOPATH was now GOPATH"
-end
-
-
-    
