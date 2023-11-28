@@ -1,3 +1,10 @@
+-- vim settings
+-- plugins
+-- plugin configs
+-- keymaps
+-- lsp
+
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.o.hlsearch = true
@@ -16,6 +23,10 @@ vim.o.termguicolors = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
+vim.o.guifont = "jetBrainsMono Nerd Font:h16"
+vim.g.neovide_cursor_vfx_mode = "railgun" -- pixiedust,sonicboom,ripple,wireframe,torpedo,railgun
+vim.g.neovide_cursor_vfx_opacity = "500.0"
+vim.g.neovide_cursor_vfx_particle_lifetime = 1.5
 
 -- install lazy.nvim
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -33,6 +44,7 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require('lazy').setup({
+  { 'mfussenegger/nvim-jdtls' },
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
@@ -42,7 +54,18 @@ require('lazy').setup({
   {'NvChad/nvim-colorizer.lua'},
     -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
+  -- Toggle Term
   {'akinsho/toggleterm.nvim', version = "*", config = true},
+  -- rose pine
+  { 'rose-pine/neovim', name = 'rose-pine' },
+  -- file explorer based on telescope
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = 
+      { 
+        "nvim-lua/plenary.nvim" 
+      },
+},
 
   -- lsp
   {
@@ -52,6 +75,14 @@ require('lazy').setup({
       -- 'williamboman/mason-lspconfig.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
     },
+  },
+
+ -- nvim-notify
+	{ 
+		'rcarriga/nvim-notify',
+    config = function()
+      vim.notify = require("notify")
+    end
   },
 
   {
@@ -125,15 +156,18 @@ require('lazy').setup({
     },
   },
 
-  -- theme
   {
     'catppuccin/nvim',
     name = 'catppuccin',
     priority = 1000,
-    config = function()
-    vim.cmd.colorscheme 'catppuccin'
-    end,
   },
+
+{
+  "folke/tokyonight.nvim",
+  lazy = false,
+  priority = 1000,
+  opts = {},
+},
 
   -- lualine
   {
@@ -244,33 +278,14 @@ require('lazy').setup({
 }, {})
 -- End plugins
 
+-- vim.notify = require("notify")
+vim.cmd[[colorscheme rose-pine]] -- catppuccin, tokyonight, rose-pine
 require("colorizer").attach_to_buffer(0, { mode = "background", css = true})
+require("tokyonight").setup({
+  style = "moon", -- storm, moon, night
+})
 -- require('mason').setup()
 -- require('mason-lspconfig').setup()
-
--- [[ Basic Keymaps ]]
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
@@ -287,6 +302,42 @@ require('telescope').setup {
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+
+
+-- key maps
+vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
+vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set('n', '<ESC>', '<cmd>noh<CR>', { silent = true })
+vim.keymap.set('n', '<C-c>', '<cmd>%y+<CR>', { desc = 'Copy whole file' })
+vim.keymap.set('n', '<C-s>', '<cmd>w<CR>', { desc = 'save file' })
+-- vim.keymap.set('n', '<C-m>', '<cmd>Man<CR>', { desc = 'display man page of item under mouse' })
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+-- See `:help telescope.builtin`
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set('n', '<leader>/', function()
+  -- You can pass additional configuration to telescope to change theme, layout, etc.
+  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+    winblend = 10,
+    previewer = false,
+  })
+end, { desc = '[/] Fuzzily search in current buffer' })
+vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
+vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
+vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
+vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
+vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+
 
 -- Telescope live_grep in git root
 -- Function to find the git root directory based on the current buffer's path
@@ -323,26 +374,6 @@ local function live_grep_git_root()
 end
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
-
--- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-vim.keymap.set('n', '<leader>/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer' })
-
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -489,9 +520,13 @@ require('which-key').register {
     _ = 'which_key_ignore' 
   },
   ['<leader>t'] = {
-    name = '[T]oggle Term',
+    name = '[T]erm',
     t = { '<cmd>ToggleTerm<CR>', '[T]oggle Term' },
-  }
+  },
+  ['<leader>f'] = {
+    name = '[F]ile',
+    e = { '<cmd>Telescope file_browser<CR>', '[E]xplorer' },
+  },
 }
 
 -- local servers = {
@@ -516,7 +551,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 local lspconfig = require "lspconfig"
-local servers = { "gopls","pyright","bashls","jsonls","html","clangd","eslint","cssls","jdtls","rust_analyzer" }
+local servers = { "gopls","pyright","bashls","jsonls","html","clangd","eslint","cssls","rust_analyzer" }
 for _, lsp in ipairs(servers) do
 lspconfig[lsp].setup {
      on_attach = on_attach,
@@ -596,5 +631,17 @@ cmp.setup {
   },
 }
 
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
