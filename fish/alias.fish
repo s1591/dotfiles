@@ -1,5 +1,6 @@
 #-------------------------------------------------------------------
 alias get_proxy="~/Documents/scripts/proxies"
+alias dwn="aria2c"
 alias vim="nvim"
 alias cl++="clang++ -std=c++20"
 alias xshconf="$EDITOR ~/.xonshrc"

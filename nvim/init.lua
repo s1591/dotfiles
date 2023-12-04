@@ -1,10 +1,3 @@
--- vim settings
--- plugins
--- plugin configs
--- keymaps
--- lsp
-
-
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.o.hlsearch = true
@@ -27,6 +20,8 @@ vim.o.guifont = "jetBrainsMono Nerd Font:h16"
 vim.g.neovide_cursor_vfx_mode = "railgun" -- pixiedust,sonicboom,ripple,wireframe,torpedo,railgun
 vim.g.neovide_cursor_vfx_opacity = "500.0"
 vim.g.neovide_cursor_vfx_particle_lifetime = 1.5
+-- re-open at last position
+vim.cmd [[ au BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif ]]
 
 -- install lazy.nvim
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -238,7 +233,7 @@ require('lazy').setup({
         python = { "cd $dir && python $fileName" },
         cpp = { "cd $dir && clang++ -std=c++20 $fileName && ./a.out && rm ./a.out" },
         c = { "cd $dir && gcc $fileName && ./a.out && rm ./a.out" },
-        go = { "cd $dir && go run $fileName" },
+        go = { "cd $dir && go run ." },
         rust = { "cd $dir && rustc $fileName && ./$fileNameWithoutExt && rm ./$fileNameWithoutExt" },
       },
 })
@@ -278,8 +273,7 @@ require('lazy').setup({
 }, {})
 -- End plugins
 
--- vim.notify = require("notify")
-vim.cmd[[colorscheme rose-pine]] -- catppuccin, tokyonight, rose-pine
+vim.cmd[[colorscheme catppuccin]] -- catppuccin, tokyonight, rose-pine
 require("colorizer").attach_to_buffer(0, { mode = "background", css = true})
 require("tokyonight").setup({
   style = "moon", -- storm, moon, night
@@ -305,8 +299,7 @@ pcall(require('telescope').load_extension, 'fzf')
 
 
 -- key maps
-vim.keymap.set('i', 'jk', '<ESC>', { silent = true })
-vim.keymap.set('i', 'kj', '<ESC>', { silent = true })
+vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', '<ESC>', '<cmd>noh<CR>', { silent = true })
 vim.keymap.set('n', '<C-c>', '<cmd>%y+<CR>', { desc = 'Copy whole file' })
@@ -509,7 +502,7 @@ require('which-key').register {
   },
   ['<leader>r'] = { 
     name = '[R]un | [R]ename',
-    f = { '<cmd>RunFile<CR>', 'run file' },
+    f = { '<cmd>RunFile<CR>', 'run [F]ile' },
   },
   ['<leader>s'] = {
     name = '[S]earch',
