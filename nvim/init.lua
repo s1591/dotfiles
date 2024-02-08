@@ -520,6 +520,7 @@ require('which-key').register {
     name = '[F]ile',
     e = { '<cmd>Telescope file_browser<CR>', '[E]xplorer' },
   },
+  ['<leader>x'] = { '<cmd>bdelete<CR>', 'Delete current buffer' },
 }
 
 -- local servers = {
