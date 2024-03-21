@@ -28,7 +28,7 @@ zsh_indicator = "{zsh}"
 bash_indicator = "{bsh}"
 nu_indicator = "{nu}"
 xonsh_indicator = "{xsh}"
-unknown_indicator = "{mystery shell}"
+unknown_indicator = "{unknown shell}"
 style = "cyan bold"
 disabled = false
 
