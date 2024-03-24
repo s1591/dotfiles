@@ -258,7 +258,7 @@ function test_letters
   echo \n
   echo -n "commonly confused: "
   echo -ne "$confusions"
-  switch $argv[2]
+  switch $argv[1]
     case "unicode"
       echo \n
       curl https://www.cl.cam.ac.uk/~mgk25/ucs/Postscript.txt

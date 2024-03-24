@@ -43,6 +43,7 @@ alias ps="procs"
 alias kittyconfig="$EDITOR ~/.config/kitty/kitty.conf"
 alias icat="kitty +kitten icat"
 alias kdiff="kitty +kitten diff"
+alias imgcat="wezterm imgcat"
 alias cd..="cd .."
 alias rec="asciinema rec" #specify a file name
 alias play="asciinema play"

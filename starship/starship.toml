@@ -30,7 +30,7 @@ nu_indicator = "{nu}"
 xonsh_indicator = "{xsh}"
 unknown_indicator = "{unknown shell}"
 style = "cyan bold"
-disabled = false
+disabled = true
 
 
 # [localip]
