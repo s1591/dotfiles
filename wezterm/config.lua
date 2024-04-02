@@ -9,6 +9,7 @@ local config = {
 	command_palette_rows = 99,
 	window_background_opacity = 0.9,
 	tab_bar_at_bottom = true,
+	default_cursor_style = "SteadyBar", -- {Steady,Blinking}Block, Underline, Bar
 }
 
 return config

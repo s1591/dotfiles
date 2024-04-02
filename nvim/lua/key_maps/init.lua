@@ -30,4 +30,7 @@ vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
-
+vim.keymap.set("n", "<leader>cr", "<cmd>CellularAutomaton make_it_rain<CR>", { desc = 'CA make it rain' })
+vim.keymap.set("n", "<leader>cl", "<cmd>CellularAutomaton game_of_life<CR>", { desc = 'CA game of life' })
+vim.keymap.set("n", "<leader>csl", "<cmd>CellularAutomaton slide<CR>", { desc = 'CA slide' })
+vim.keymap.set("n", "<leader>csr", "<cmd>CellularAutomaton scramble<CR>", { desc = 'CA scramble' })
