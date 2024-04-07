@@ -25,14 +25,6 @@ require('lazy').setup({
 	{ "nvim-telescope/telescope-file-browser.nvim", dependencies = { "nvim-lua/plenary.nvim" }, },
 	-- lsp
 	{ 'neovim/nvim-lspconfig',                      dependencies = { 'j-hui/fidget.nvim' }, },
-	-- nvim notify
-	{
-		'rcarriga/nvim-notify',
-		config =
-			function()
-				vim.notify = require("notify")
-			end
-	},
 	-- auto pairs
 	{ "windwp/nvim-autopairs" },
 	-- cmp
@@ -84,6 +76,20 @@ require('lazy').setup({
 
 	-- cellular automaton
 	{ 'eandrju/cellular-automaton.nvim' },
+
+	-- noice
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		}
+	},
 
 
 })
