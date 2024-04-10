@@ -22,6 +22,5 @@ vim.g.neovide_cursor_vfx_mode = "railgun" -- pixiedust,sonicboom,ripple,wirefram
 vim.g.neovide_cursor_vfx_opacity = "500.0"
 vim.g.neovide_cursor_vfx_particle_lifetime = 1.5
 -- end neovide
-vim.cmd('colorscheme catppuccin')
 -- re-open at last position
 vim.cmd [[ au BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif ]]
