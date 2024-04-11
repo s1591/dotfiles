@@ -21,7 +21,7 @@ require("catppuccin").setup({
         conditionals = { "italic" },
         loops = {},
         functions = {},
-        keywords = {},
+        keywords = { "italic" },
         strings = {},
         variables = {},
         numbers = {},
@@ -39,7 +39,7 @@ require("catppuccin").setup({
         gitsigns = true,
         nvimtree = true,
         treesitter = true,
-        notify = false,
+        notify = true,
         mini = {
             enabled = true,
             indentscope_color = "",
