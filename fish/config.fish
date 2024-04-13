@@ -1,7 +1,7 @@
 set -e fish_user_paths
 set -U fish_user_paths $HOME/.local/bin /usr/local/go/bin $HOME/.cargo/bin $HOME/.dotnet/tools /usr/lib/go/src $HOME/go/bin $PYENV_ROOT/bin /home/sumanth0x637/Documents/lua-ls/lua-language-server-3.7.4-linux-x64/bin $fish_user_paths
 #set PATH $PATH:$HOME/.local/bin:$HOME/.emacs.d/bin
-set EDITOR "nvim"
+set EDITOR "hx"
 # set -Ux SUDO_ASKPASS "/usr/bin/ksshaskpass"
 set -Ux PYENV_ROOT $HOME/.pyenv
 set DOTNET_ROOT	"/usr/share/dotnet/sdk"

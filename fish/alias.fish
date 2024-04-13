@@ -1,4 +1,5 @@
 #-------------------------------------------------------------------
+alias hx="~/.config/helix/helix.AppImage"
 alias get_proxy="~/Documents/scripts/proxies"
 alias dwn="aria2c"
 alias vim="nvim"
