@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 
 local config = {
-	color_scheme = 'Catppuccin Mocha',
+	color_scheme = 'Rosé Pine (base16)',  --'Catppuccin Mocha'
 	font = wezterm.font 'jetBrainsMono Nerd Font',
 	font_size = 16.0,
 	hide_tab_bar_if_only_one_tab = true,
