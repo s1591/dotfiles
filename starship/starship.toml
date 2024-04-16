@@ -1,3 +1,94 @@
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$pijul_channel\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$direnv\
+$env_var\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$jobs\
+$battery\
+$time\
+$status\
+$os\
+$container\
+$shell\
+$line_break\
+$character
+"""
+
 # Inserts a blank line between shell prompts
 add_newline = true
 command_timeout = 1000
@@ -5,57 +96,42 @@ command_timeout = 1000
 [character]
 success_symbol = "[󰭎 ](purple)"
 error_symbol = "[](bold red)"
-#🚀 #✗
-#λ  #
-#⚡️ #
-#💀 #
-#  #
-#  #
-#  #
-
-#Make prompt a single line 
-[line_break]
-disabled = true
 
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
 
 [shell]
-fish_indicator = "{󰈺 }"
-powershell_indicator = "{_}"
-zsh_indicator = "{zsh}"
-bash_indicator = "{bsh}"
-nu_indicator = "{nu}"
-xonsh_indicator = "{xsh}"
-unknown_indicator = "{unknown shell}"
+fish_indicator = "shell: 󰈺"
+powershell_indicator = "shell: _"
+zsh_indicator = "shell: zsh"
+bash_indicator = "shell: bash"
+nu_indicator = "shell: nu"
+xonsh_indicator = "shell: xsh"
+unknown_indicator = "shell: unknown shell"
 style = "cyan bold"
-disabled = true
-
+disabled = false
 
 # [localip]
 # ssh_only = false
 # format = "@[$localipv4](bold red) "
 # disabled = false
 
-
 [username]
 # format = "$user@"
-# format = "🚀@" #""
 format = " @"
-show_always=true
+show_always=false
 style_root = "bold red"
 
 [hostname]
 disabled = false
-format = "$hostname in " # "$hostname 🚀 in "
+# format = "$hostname in "
+format = "in "
 ssh_only = false
-# style = "bold dimmed red"
 trim_at = "-"
 
 [directory]
 format = "[$path]($style)[$read_only]($read_only_style) "
-# style = "bold #f57800"
 style = "purple"
 read_only = " 🔒"
 read_only_style = "red"
@@ -79,6 +155,7 @@ discharging_symbol ="󰂃 "
 unknown_symbol = "󰂑 "
 empty_symbol = "󰂎 "
 disabled = false
+
 [[battery.display]]
 threshold = 100
 style = "bold red"
@@ -148,7 +225,4 @@ symbol = "ﯣ "
 
 [lua]
 symbol= " "
-
-
-
 

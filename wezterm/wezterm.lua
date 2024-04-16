@@ -11,7 +11,6 @@ config = _config
 
 config.colors = {}
 config.colors.tab_bar = _tabbar.tab_bar
-config.tab_bar_style = _tabbar.tab_bar_style
 config.keys = _keybindings
 
 if CONFIG_RELOAD_NOTIFICATIONS then

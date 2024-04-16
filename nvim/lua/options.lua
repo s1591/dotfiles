@@ -1,6 +1,8 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+require "nvchad.options"
+
+vim.o.termguicolors = true
 vim.o.hlsearch = true
+vim.opt.incsearch = true
 vim.wo.relativenumber = true
 vim.o.mouse = 'a'
 vim.o.clipboard = 'unnamedplus'
@@ -12,7 +14,6 @@ vim.wo.signcolumn = 'yes'
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect'
-vim.o.termguicolors = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
