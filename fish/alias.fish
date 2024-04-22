@@ -1,5 +1,4 @@
 #-------------------------------------------------------------------
-alias hx="~/.config/helix/helix.AppImage"
 alias get_proxy="~/Documents/scripts/proxies"
 alias dwn="aria2c"
 alias vim="nvim"
@@ -55,7 +54,6 @@ alias mex="chmod +x"
 alias cat="bat"
 alias cb="links https://google.com/"
 alias cblu="links -lookup"
-alias map="mapscii"
 alias fixdualbtime="timedatectl set-local-rtc 1"
 #==================================pacman && paru=========================================#
 #alias S="sudo pacman -S"

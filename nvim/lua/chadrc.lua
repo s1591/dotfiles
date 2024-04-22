@@ -10,34 +10,34 @@ local _command = " 󰘳 コマンド"
 local M = {}
 
 M.ui = {
-  theme = "rosepine",
-  theme_toggle = { "rosepine", "catppuccin" },
-  transparency = false,
+    theme = "catppuccin",
+    theme_toggle = { "catppuccin", "rosepine" },
+    transparency = true,
 
-  hl_override = {
-    Comment = { italic = true },
-    ["@comment"] = { italic = true },
-  },
-
-  statusline = {
-    theme = "vscode",
-    modules = {
-      mode = function()
-        local utils = require "nvchad.stl.utils"
-        local modes = utils.modes
-        modes["n"] = { _normal, "Normal" }
-        modes["v"] = { _select, "Select" }
-        modes["i"] = { _insert, "Insert" }
-        modes["c"] = { _command, "Command" }
-
-        if not utils.is_activewin() then
-          return ""
-        end
-        local m = vim.api.nvim_get_mode().mode
-        return "%#St_" .. modes[m][2] .. "mode#" .. modes[m][1] .. " "
-      end,
+    hl_override = {
+        Comment = { italic = true },
+        ["@comment"] = { italic = true },
     },
-  },
+
+    statusline = {
+        theme = "vscode",
+        modules = {
+            mode = function()
+                local utils = require "nvchad.stl.utils"
+                local modes = utils.modes
+                modes["n"] = { _normal, "Normal" }
+                modes["v"] = { _select, "Select" }
+                modes["i"] = { _insert, "Insert" }
+                modes["c"] = { _command, "Command" }
+
+                if not utils.is_activewin() then
+                    return ""
+                end
+                local m = vim.api.nvim_get_mode().mode
+                return "%#St_" .. modes[m][2] .. "mode#" .. modes[m][1] .. " "
+            end,
+        },
+    },
 }
 
 return M

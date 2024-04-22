@@ -95,7 +95,7 @@ command_timeout = 1000
 
 [character]
 success_symbol = "[󰭎 ](purple)"
-error_symbol = "[](bold red)"
+error_symbol = "[ ](bold red)"
 
 # Disable the package module, hiding it from the prompt completely
 [package]
