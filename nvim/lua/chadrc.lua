@@ -10,8 +10,8 @@ local _command = " 󰘳 コマンド"
 local M = {}
 
 M.ui = {
-    theme = "catppuccin",
-    theme_toggle = { "catppuccin", "rosepine" },
+    theme = "palenight",
+    theme_toggle = { "palenight", "catppuccin" },
     transparency = true,
 
     hl_override = {
@@ -20,7 +20,7 @@ M.ui = {
     },
 
     statusline = {
-        theme = "vscode",
+        theme = "default",
         modules = {
             mode = function()
                 local utils = require "nvchad.stl.utils"
