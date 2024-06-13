@@ -1,0 +1,48 @@
+theme = "catppuccin_transparent"
+
+[editor]
+line-number = "relative"
+mouse = true
+shell = ["fish", "-iC"]
+completion-trigger-len = 1
+preview-completion-insert = true
+true-color = true
+color-modes = false
+popup-border = "all"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = true
+
+[editor.statusline]
+left = ["mode", "spacer","spinner"]
+center = ["read-only-indicator", "file-name", "version-control", "separator","total-line-numbers"]
+separator = "󰨦"
+mode.normal = " 󱓞 ノーマル"
+mode.insert = "  インサート"
+mode.select = " 󰆏 セレクション"
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+nnbsp = "␣"
+tab = "→"
+newline = "⏎"
+tabpad = "·" # Tabs will look like "→···" (depending on tab width)
+
+[keys.normal]
+C-s = ":w"
+C-x = ":x"
+g = { a = "code_action" }
+
+[keys.normal.space]
+o = ":config-open"
+x = ":buffer-close!"
