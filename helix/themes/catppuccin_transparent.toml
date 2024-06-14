@@ -10,3 +10,5 @@ inherits = "catppuccin_mocha"
 
 "ui.menu" = { fg = "overlay2" }
 "ui.menu.selected" = { fg = "text", modifiers = ["bold"] }
+
+"keyword" = { fg = "mauve", modifiers = ["italic"] }

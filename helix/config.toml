@@ -5,10 +5,13 @@ line-number = "relative"
 mouse = true
 shell = ["fish", "-iC"]
 completion-trigger-len = 1
+completion-timeout = 100
 preview-completion-insert = true
 true-color = true
 color-modes = false
 popup-border = "all"
+bufferline = "multiple"
+auto-pairs = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -19,8 +22,8 @@ select = "underline"
 hidden = true
 
 [editor.statusline]
-left = ["mode", "spacer","spinner"]
-center = ["read-only-indicator", "file-name", "version-control", "separator","total-line-numbers"]
+left = ["mode", "version-control","spacer", "spinner"]
+center = ["read-only-indicator", "file-name", "separator", "total-line-numbers"]
 separator = "󰨦"
 mode.normal = " 󱓞 ノーマル"
 mode.insert = "  インサート"
@@ -30,18 +33,13 @@ mode.select = " 󰆏 セレクション"
 display-messages = true
 display-inlay-hints = true
 
-[editor.whitespace.characters]
-space = "·"
-nbsp = "⍽"
-nnbsp = "␣"
-tab = "→"
-newline = "⏎"
-tabpad = "·" # Tabs will look like "→···" (depending on tab width)
+[editor.gutters.line-numbers]
+min-width = 0
 
 [keys.normal]
 C-s = ":w"
 C-x = ":x"
-g = { a = "code_action" }
+C-r = ":config-reload"
 
 [keys.normal.space]
 o = ":config-open"

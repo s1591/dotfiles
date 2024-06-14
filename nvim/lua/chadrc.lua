@@ -10,7 +10,7 @@ local _command = " 󰘳 コマンド"
 local M = {}
 
 M.ui = {
-    theme = "palenight",
+    theme = "catppuccin",
     theme_toggle = { "palenight", "catppuccin" },
     transparency = true,
 
