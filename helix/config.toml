@@ -3,7 +3,6 @@ theme = "catppuccin_transparent"
 [editor]
 line-number = "relative"
 mouse = true
-shell = ["fish", "-iC"]
 completion-trigger-len = 1
 completion-timeout = 100
 preview-completion-insert = true
