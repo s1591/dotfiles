@@ -4,15 +4,23 @@ import re
 
 # https://github.com/helix-editor/helix/tree/master/runtime/themes
 
+
 class ToTransparent:
     def __init__(self, url):
         self.url = url
         self.theme = {}
-        self.keys = ["ui.background","ui.popup", "ui.window", "ui.help", "ui.menu.selected", "ui.menu"]
+        self.keys = [
+            "ui.background",
+            "ui.popup",
+            "ui.window",
+            "ui.help",
+            "ui.menu.selected",
+            "ui.menu",
+        ]
         self.__get()
 
-    def addKey(self, key):
-        self.keys += [key]
+    def addKey(self, *keys):
+        self.keys.extend(keys)
 
     def __get(self):
         self.__convertToGithubRaw()
@@ -21,11 +29,13 @@ class ToTransparent:
         self.theme["theme"] = resp.text
 
     def __convertToGithubRaw(self):
-        pattern = r'https://github.com/(.+)blob(.+)'
+        pattern = r"https://github.com/(.+)blob(.+)"
         res = re.search(pattern, self.url)
         if res is None:
             return
-        self.url = "https://raw.githubusercontent.com/" + res.group(1) + res.group(2)[1:]
+        self.url = (
+            "https://raw.githubusercontent.com/" + res.group(1) + res.group(2)[1:]
+        )
 
     def __getThemeName(self):
         self.theme["name"] = ""
@@ -36,8 +46,8 @@ class ToTransparent:
                 break
 
     def __removeBg(self, stmt) -> str:
-    # "ui.help" = { fg = "overlay2", bg = "surface0", ... } -> ui.help = { fg = "overlay2", ... }
-        
+        # "ui.help" = { fg = "overlay2", bg = "surface0", ... } -> ui.help = { fg = "overlay2", ... }
+
         index = 0
         for i in range(len(self.keys)):
             if self.keys[i] in stmt:
@@ -49,7 +59,7 @@ class ToTransparent:
         key = self.keys[index]
         self.keys.remove(key)
 
-        A = stmt[stmt.index("{"):].strip("{").strip("}")
+        A = stmt[stmt.index("{") :].strip("{").strip("}")
         val = "{ "
         sep = ""
         for i in A.split(","):
@@ -58,7 +68,6 @@ class ToTransparent:
                 sep = ", "
         val += " }"
         return f'"{key}" =  {val}'
-
 
     def write(self, fileName=""):
         baseName = ""
@@ -73,7 +82,7 @@ class ToTransparent:
             themeFile.write(f"# {self.url}")
             themeFile.write("\n\n")
             themeFile.write(f'inherits = "{baseName}"' + "\n\n")
-            for i in self.theme['theme'].split("\n"):
+            for i in self.theme["theme"].split("\n"):
                 if not len(self.keys):
                     return
                 stmt = self.__removeBg(i)
@@ -82,7 +91,7 @@ class ToTransparent:
             if len(self.keys):
                 for i in self.keys:
                     themeFile.write(i + " = " + "{}" + "\n")
-                    
+
 
 if __name__ == "__main__":
     url = ""
