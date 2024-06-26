@@ -1,3 +1,5 @@
+# use-grammars = { only = [ "rust", "c", "cpp", "go", "python" ] }
+
 [[language]]
 name = "python"
 language-servers = [ "pyright", "ruff" ]

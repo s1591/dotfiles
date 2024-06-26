@@ -23,17 +23,26 @@ hidden = true
 [editor.statusline]
 left = ["mode", "version-control","spacer", "spinner"]
 center = ["read-only-indicator", "file-name", "separator", "total-line-numbers"]
+right = ["workspace-diagnostics", "selections", "register", "position", "file-encoding"]
 separator = "󰨦"
 mode.normal = " 󱓞 ノーマル"
 mode.insert = "  インサート"
 mode.select = " 󰆏 セレクション"
 
 [editor.lsp]
+enable = true
 display-messages = true
 display-inlay-hints = true
+auto-signature-help = true
+snippets = true
 
 [editor.gutters.line-numbers]
 min-width = 0
+
+[editor.indent-guides]
+render = true
+character = "╎" # "│", "┆", "┊", "⸽", "╎"
+skip-levels = 0
 
 [keys.normal]
 C-s = ":w"
