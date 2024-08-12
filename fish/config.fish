@@ -1,5 +1,5 @@
 set -e fish_user_paths
-set -U fish_user_paths $HOME/.local/bin /usr/local/go/bin $HOME/.cargo/bin $HOME/.dotnet/tools /usr/lib/go/src $HOME/go/bin $PYENV_ROOT/bin /home/sumanth0x637/Documents/lua-ls/lua-language-server-3.7.4-linux-x64/bin $fish_user_paths
+set -U fish_user_paths $HOME/.local/bin /usr/local/go/bin $HOME/.cargo/bin $HOME/.dotnet/tools /usr/lib/go/src $HOME/go/bin $PYENV_ROOT/bin $HOME/.local/share/nvim/mason/bin $HOME/Documents/scripts $fish_user_paths
 #set PATH $PATH:$HOME/.local/bin:$HOME/.emacs.d/bin
 set EDITOR nvim
 # set -Ux SUDO_ASKPASS "/usr/bin/ksshaskpass"
@@ -39,6 +39,5 @@ fish_default_key_bindings #supress vim
 
 source ~/.config/fish/alias.fish
 source ~/.config/fish/cust_functions.fish
-source ~/.config/fish/conf.d/nix.fish
 
 starship init fish | source

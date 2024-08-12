@@ -22,7 +22,7 @@ hidden = true
 
 [editor.statusline]
 left = ["mode", "version-control","spacer", "spinner"]
-center = ["read-only-indicator", "file-name", "separator", "total-line-numbers"]
+center = ["read-only-indicator", "file-modification-indicator","file-name", "separator", "total-line-numbers"]
 right = ["workspace-diagnostics", "selections", "register", "position", "file-encoding"]
 separator = "󰨦"
 mode.normal = " 󱓞 ノーマル"

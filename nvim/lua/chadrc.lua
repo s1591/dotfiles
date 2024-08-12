@@ -10,9 +10,9 @@ local _command = " 󰘳 コマンド"
 local M = {}
 
 M.ui = {
-    theme = "palenight",
-    theme_toggle = { "palenight", "catppuccin" },
-    transparency = true,
+    theme = "catppuccin",
+    -- theme_toggle = { "palenight", "catppuccin" },
+    transparency = false,
 
     hl_override = {
         Comment = { italic = true },
