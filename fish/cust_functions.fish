@@ -165,7 +165,7 @@ function s
 	end
 end
 
-function o
+function o --description "open a files quickly using fzf"
 	set a (fd . -H --type f | fzf --prompt="\$ " --pointer="*" --preview 'bat --color=always --style=numbers --line-range=:500 {}')	
 	if test $status -eq 0 
 	  switch $argv[1]
@@ -178,7 +178,7 @@ function o
 end
 
 
-function d
+function d --description "jump to a directory quickly using fzf"
   set currDir $PWD
 	switch $argv[1]
 		case "h"
@@ -209,7 +209,7 @@ function rotate
 	end
 end
 
-function test_letters
+function test_letters --description "see how current font displays numbers, letters and some ligatures"
   switch $argv[1]
     case "a"
       set is_instant 1
@@ -268,10 +268,6 @@ function nbx
 	jupyter nbconvert --execute $argv[1] --to $argv[2]
 end
 
-function go_searx
-	sudo -H -u searxng -i
-end
-
 function wttr
 	switch $argv[1]
 		case $argv[1]
@@ -289,3 +285,49 @@ function dec
 	age -d $argv[1]
 end
 
+function extract --description "Expand or extract bundled & compressed files"
+    set argLen (count $argv)
+
+    if test $argLen -lt 1
+        echo "no archive name given"
+        exit 1
+    end
+
+    if test -e $argv[1]
+        set ext (echo $argv[1] | awk -F. '{print $NF}')
+        switch $ext
+            case tar.xz
+                tar -xvf "$argv[1]"
+            case tar.bz2
+                tar -jxvf "$argv[1]"
+            case tar.gz
+                tar -zxvf "$argv[1]"
+            case bz2
+                bunzip2 "$argv[1]"
+            case dmg
+                hdiutil mount "$argv[1]"
+            case gz
+                gunzip "$argv[1]"
+            case tar
+                tar -xvf "$argv[1]"
+            case tbz2
+                tar -jxvf "$argv[1]"
+            case tgz
+                tar -zxvf "$argv[1]"
+            case zip
+                unzip "$argv[1]"
+            case pax
+                cat "$1" | pax -r
+            case pax.z
+                uncompress "$1" --stdout | pax -r
+            case rar 7z
+                7z x "$argv[1]"
+            case z
+                uncompress "$argv[1]"
+            case *
+                echo "'$argv[1]' cannot be extracted/mounted via extract()"
+        end
+    else
+        echo "'$argv[1]' is not a valid file"
+    end
+end
