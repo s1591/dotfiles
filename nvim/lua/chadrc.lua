@@ -12,7 +12,7 @@ local M = {}
 M.ui = {
     theme = "catppuccin",
     -- theme_toggle = { "palenight", "catppuccin" },
-    transparency = false,
+    transparency = true,
 
     hl_override = {
         Comment = { italic = true },
