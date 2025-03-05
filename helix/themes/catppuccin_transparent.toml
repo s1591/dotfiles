@@ -1,0 +1,14 @@
+# https://github.com/catppuccin/helix/blob/main/themes/default/catppuccin_mocha.toml
+
+inherits = "catppuccin_mocha"
+
+"ui.background" = { fg = "text" }
+
+"ui.popup" = { fg = "text" }
+"ui.window" = { fg = "crust" }
+"ui.help" = { fg = "overlay2" }
+
+"ui.menu" = { fg = "overlay2" }
+"ui.menu.selected" = { fg = "text", modifiers = ["bold"] }
+
+"keyword" = { fg = "mauve", modifiers = ["italic"] }

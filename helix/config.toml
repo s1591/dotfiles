@@ -1,0 +1,55 @@
+theme = "catppuccin_transparent"
+
+[editor]
+line-number = "relative"
+mouse = true
+completion-trigger-len = 1
+completion-timeout = 100
+preview-completion-insert = true
+true-color = true
+color-modes = false
+popup-border = "all"
+bufferline = "multiple"
+auto-pairs = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = true
+
+[editor.statusline]
+left = ["mode", "version-control","spacer", "spinner"]
+center = ["read-only-indicator", "file-modification-indicator","file-name", "separator", "total-line-numbers"]
+right = ["workspace-diagnostics", "selections", "register", "position", "file-encoding"]
+separator = "󰨦"
+mode.normal = " 󱓞 ノーマル"
+mode.insert = "  インサート"
+mode.select = " 󰆏 セレクション"
+
+[editor.lsp]
+enable = true
+display-messages = true
+display-inlay-hints = false
+auto-signature-help = true
+# lsp.display-progress-messages = true
+snippets = true
+
+[editor.gutters.line-numbers]
+min-width = 0
+
+[editor.indent-guides]
+render = true
+character = "╎" # "│", "┆", "┊", "⸽", "╎"
+skip-levels = 0
+
+[keys.normal]
+C-s = ":w"
+C-x = ":x"
+C-r = ":config-reload"
+
+[keys.normal.space]
+o = ":config-open"
+x = ":buffer-close!"
