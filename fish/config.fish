@@ -1,5 +1,5 @@
 set -e fish_user_paths
-set -U fish_user_paths /opt/homebrew/bin /opt/homebrew/sbin /usr/local/go/bin /Users/s1591/go/bin ~/bin $PYENV_ROOT/bin /opt/homebrew/opt/openjdk@21/bin $HOME/Documents/scripts $fish_user_paths
+set -U fish_user_paths /opt/homebrew/bin /opt/homebrew/sbin /usr/local/go/bin /Users/s1591/go/bin ~/bin $PYENV_ROOT/bin $PYENV_ROOT/shims /opt/homebrew/opt/openjdk@21/bin $HOME/Documents/scripts $fish_user_paths
 set -Ux PYENV_ROOT $HOME/.pyenv
 set EDITOR nvim
 set --universal FZF_DEFAULT_COMMAND fd
