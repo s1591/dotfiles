@@ -66,7 +66,9 @@ function d --description "jump to a directory quickly using fzf"
     end
 end
 
-function test_letters --description "see how current font displays numbers, letters and some ligatures"
+function test_letters --description "see how current font displays numbers, letters and some ligatures
+                                    (arg1: a for 1s sleep between symbols or i for instant display,
+                                    default: i)"
     switch $argv[1]
         case a
             set is_instant 1
@@ -112,14 +114,10 @@ function test_letters --description "see how current font displays numbers, lett
     echo \n
     echo -n "commonly confused: "
     echo -ne "$confusions"
-    switch $argv[1]
-        case unicode
-            echo \n
-            curl https://www.cl.cam.ac.uk/~mgk25/ucs/Postscript.txt
-    end
 end
 
-function wttr
+function wttr --description "Display weather using wttr.in.
+                            (arg1: city, default: gudivada)"
     switch $argv[1]
         case $argv[1]
             curl wttr.in/$argv[1]
@@ -127,6 +125,15 @@ function wttr
             curl wttr.in/gudivada
     end
 end
+
+function alert --description "Display an alert using osascript
+                             (arg1: msg, arg2: title)"
+    set cmd (printf "osascript -e \
+        'tell app \"System Events\" to display dialog \"%s\" with title \"%s\"'" \
+        "$argv[1]" "$argv[2]")
+    fish -c $cmd
+end
+
 
 #function extract --description "Expand or extract bundled & compressed files"
 #    set argLen (count $argv)

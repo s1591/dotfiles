@@ -1,3 +1,4 @@
+alias mex="chmod +x"
 alias icat="imgcat"
 alias btm="btm --battery"
 alias dwn="aria2c"
