@@ -1,0 +1,34 @@
+# https://ghostty.org/docs/config/reference
+
+theme = catppuccin-mocha
+maximize = true
+working-directory = home
+
+background-blur = true
+# background-blur-radius = 29
+background-opacity = 0.9
+
+window-decoration = true
+
+shell-integration-features = no-cursor
+focus-follows-mouse = true
+cursor-style = block
+cursor-style-blink = false
+cursor-opacity = 1
+cursor-text = black
+mouse-hide-while-typing = true
+
+font-family = jetBrainsMono Nerd Font
+font-size = 19
+
+macos-titlebar-style = transparent
+# blueprint, chalkboard, microchip, glass, holographic, paper, retro, xray
+macos-icon = xray
+
+copy-on-select = clipboard
+
+# cmd + `
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+
+# off, check, download
+auto-update = check

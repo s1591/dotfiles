@@ -134,7 +134,6 @@ function alert --description "Display an alert using osascript
     fish -c $cmd
 end
 
-
 #function extract --description "Expand or extract bundled & compressed files"
 #    set argLen (count $argv)
 #
