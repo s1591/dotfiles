@@ -1,7 +1,7 @@
 # https://ghostty.org/docs/config/reference
+# https://github.com/ghostty-org/ghostty/blob/main/src/config/Config.zig
 
 theme = catppuccin-mocha
-maximize = true
 working-directory = home
 
 background-blur = true
@@ -19,7 +19,7 @@ cursor-text = black
 mouse-hide-while-typing = true
 
 font-family = jetBrainsMono Nerd Font
-font-size = 19
+font-size = 18
 
 macos-titlebar-style = transparent
 # blueprint, chalkboard, microchip, glass, holographic, paper, retro, xray
