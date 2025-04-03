@@ -25,6 +25,7 @@ font-size = 18
 macos-titlebar-style = transparent
 # blueprint, chalkboard, microchip, glass, holographic, paper, retro, xray
 # macos-icon = xray
+# https://github.com/lukejanicke/ghostty-app-icon
 
 copy-on-select = clipboard
 
