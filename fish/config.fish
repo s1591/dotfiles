@@ -13,6 +13,6 @@ fish_default_key_bindings #supress vim
 # '⋊> '
 
 source ~/.config/fish/alias.fish
-source ~/.config/fish/cust_functions.fish
+source ~/.config/fish/functions.fish
 
 starship init fish | source
