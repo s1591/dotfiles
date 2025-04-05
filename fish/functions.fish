@@ -67,7 +67,7 @@ function d --description "jump to a directory quickly using fzf"
 end
 
 function test_letters --description "see how current font displays numbers, letters and some ligatures
-                                    (arg1: a for 1s sleep between symbols or i for instant display,
+                                    (arg1: a for .2s sleep between symbols or i for instant display,
                                     default: i)"
     switch $argv[1]
         case a
@@ -127,11 +127,26 @@ function wttr --description "Display weather using wttr.in.
 end
 
 function alert --description "Display an alert using osascript
-                             (arg1: msg, arg2: title)"
+                             (-h | -help for help)"
+
+    argparse 'h/help' -- $argv
+
+    if set -q _flag_help
+        printf "Usage of alert:\n\talert [msg] [title]"
+        return 0
+    end
+
+    # appears on current space
+    # set cmd (printf "osascript -e \
+        # 'tell app \"System Events\" to display dialog \"%s\" with title \"%s\"'" \
+        # "$argv[1]" "$argv[2]")
+
     set cmd (printf "osascript -e \
-        'tell app \"System Events\" to display dialog \"%s\" with title \"%s\"'" \
-        "$argv[1]" "$argv[2]")
-    fish -c $cmd
+        'tell app \"Ghostty\" to display alert \"%s\" message \"%s\"'" \
+        "$argv[2]" "$argv[1]")
+
+    eval $cmd > /dev/null
+
 end
 
 #function extract --description "Expand or extract bundled & compressed files"
