@@ -127,7 +127,7 @@ function wttr --description "Display weather using wttr.in.
 end
 
 function alert --description "Display an alert using osascript
-                             (-h | -help for help)"
+                             (--h | --help for help)"
 
     argparse 'h/help' -- $argv
 
@@ -154,7 +154,7 @@ end
 #
 #    if test $argLen -lt 1
 #        echo "no archive name given"
-#        exit 1
+#        return 1
 #    end
 #
 #    if test -e $argv[1]
