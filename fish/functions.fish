@@ -127,23 +127,28 @@ function wttr --description "Display weather using wttr.in.
 end
 
 function alert --description "Display an alert using osascript
-                             (--h | --help for help)"
+                             (-h | --help for help)"
 
-    argparse 'h/help' -- $argv
+    argparse 'h/help' 'c/cmd' -- $argv
 
     if set -q _flag_help
         printf "Usage of alert:\n\talert [msg] [title]"
+        printf "\n\t[-c | --cmd]:\n\t\tprints the command used to send alert"
         return 0
     end
 
     # appears on current space
-    # set cmd (printf "osascript -e \
-        # 'tell app \"System Events\" to display dialog \"%s\" with title \"%s\"'" \
+    # set cmd (printf "osascript -e 'tell app \"System Events\" to display dialog \"%s\" with title \"%s\"'" \
         # "$argv[1]" "$argv[2]")
 
-    set cmd (printf "osascript -e \
-        'tell app \"Ghostty\" to display alert \"%s\" message \"%s\"'" \
+    # appears on terminals space
+    set cmd (printf "osascript -e 'tell app \"Ghostty\" to display alert \"%s\" message \"%s\"'" \
         "$argv[2]" "$argv[1]")
+
+    if set -q _flag_cmd
+        echo $cmd
+        return 0
+    end
 
     eval $cmd > /dev/null
 
