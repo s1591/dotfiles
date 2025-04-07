@@ -21,16 +21,6 @@ end
 bind ! __history_previous_command
 bind '$' __history_previous_command_arguments
 
-### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
-function evil
-    switch $argv[1]
-        case 1
-            fish_vi_key_bindings
-        case 0
-            fish_default_key_bindings
-    end
-end
-
 function makebak
     cp $argv[1] $argv[1].bak
 end
@@ -39,7 +29,7 @@ function avail
     command -v $argv[1] >/dev/null
 end
 
-function o --description "open a file quickly using fzf"
+function o --description "open a file quickly using fzf and $EDITOR"
     set a (fd . -H --type f | fzf --prompt="\$ " --pointer="*" --preview 'bat --color=always --style=numbers --line-range=:500 {}')
     if test $status -eq 0
         switch $argv[1]

@@ -4,10 +4,9 @@
 # https://github.com/cpressland/dots/blob/main/macos_bootstrap.sh
 
 
-source ./modules/dock.fish
-source ./modules/finder.fish
-source ./modules/safari.fish
-source ./modules/helpers.fish
+for module in (/bin/ls ./modules/)
+    source ./modules/$module
+end
 
 setup_dock
 setup_safari

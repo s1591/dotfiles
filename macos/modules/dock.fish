@@ -1,5 +1,5 @@
 function setup_dock
-    log (printInRed "--- Setting up Dock ---")
+    log (printIn red "--- Setting up Dock ---")
 
     log "Enabled autohide"
     defaults write com.apple.dock "autohide" -bool "true"

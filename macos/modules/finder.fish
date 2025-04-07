@@ -1,5 +1,5 @@
 function setup_finder
-    log (printInRed "--- Setting up Finder ---")
+    log (printIn red "--- Setting up Finder ---")
 
     log "Enabled path bar"
     defaults write com.apple.finder "ShowPathbar" -bool "true"
