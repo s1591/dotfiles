@@ -10,6 +10,7 @@
 # custom-shader = ./ghostty-shaders/starfield.glsl
 # custom-shader = ./ghostty-shaders/sparks-from-fire.glsl
 # custom-shader = ./ghostty-shaders/starfield-colors.glsl
+
 theme = catppuccin-mocha
 working-directory = home
 
@@ -17,6 +18,7 @@ background-blur = true
 # background-blur-radius = 29
 background-opacity = 0.9
 
+maximize = true
 window-decoration = true
 
 shell-integration-features = no-cursor
@@ -41,4 +43,4 @@ copy-on-select = clipboard
 keybind = global:cmd+grave_accent=toggle_quick_terminal
 
 # off, check, download
-auto-update = check
+auto-update = off

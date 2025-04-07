@@ -80,7 +80,7 @@ function test_letters --description "see how current font displays numbers, lett
     set punct "!" "@" "#" "\$" "%" "^" "&" "*" "(" ")" "{" "}"
     set ligatures -- --- "==" "===" "!=" "!==" "=!=" "=:=" "=/=" "<=" ">=" "&&" "&&&" "&=" "++" "+++" "***" ";;" "!!" "??" "???" "?:" "?." "?=" "<:" ":<" ":>" ">:" "<:<" "<>" "<<<" ">>>" "<<" ">>" "||" "-|" "_|_" "|-" "||-" "|=" "||=" "##" "###" "####" "#{" "#[" "]#" "#(" "#?" "#_" "#_(" "#:" "#!" "#=" "^=" "<\$>" "<\$" "\$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</" "</>" "/>" "<!--" "<#--" "-->" "->" "->>" "<<-" "<-" "<=<" "=<<" "<<=" "<==" "<=>" "<==>" "==>" "=>" "=>>" ">=>" ">>=" ">>-" ">-" "-<" "-<<" ">->" "<-<" "<-|" "<=|" "|=>" "|->" "<->" "<~~" "<~" "<~>" "~~" "~~>" "~>" "~-" "-~" "~@" "[||]" "|]" "[|" "|}" "{|" "[< >]" "|>" "<|" "||>" "<||" "|||>" "<|||" "<|>" "..." ".." ".=" "..<" ".?" "::" ":::" ":=" "::=" ":?" ":?>" // /// "/*" "*/" "/=" "//=" "/==" "@_" __
     set confusions iLloO0
-    echo -n "numbers: "
+    printIn red "numbers: "
     for i in $nums
         echo -ne "$i "
         if test $is_instant -eq 1
@@ -88,7 +88,7 @@ function test_letters --description "see how current font displays numbers, lett
         end
     end
     echo \n
-    echo -n "letters: "
+    printIn red "letters: "
     for i in $alps
         echo -ne "$i "
         if test $is_instant -eq 1
@@ -96,7 +96,7 @@ function test_letters --description "see how current font displays numbers, lett
         end
     end
     echo \n
-    echo -n "symbols: "
+    printIn red "symbols: "
     for i in $punct
         echo -ne "$i "
         if test $is_instant -eq 1
@@ -104,7 +104,7 @@ function test_letters --description "see how current font displays numbers, lett
         end
     end
     echo \n
-    echo -n "ligatures: "
+    printIn red "ligatures: "
     for i in $ligatures
         echo -ne "$i "
         if test $is_instant -eq 1
@@ -112,7 +112,7 @@ function test_letters --description "see how current font displays numbers, lett
         end
     end
     echo \n
-    echo -n "commonly confused: "
+    printIn red "commonly confused: "
     echo -ne "$confusions"
 end
 
@@ -129,21 +129,22 @@ end
 function alert --description "Display an alert using osascript
                              (-h | --help for help)"
 
-    argparse 'h/help' 'c/cmd' -- $argv
+    argparse 'h/help' 'c/cmd' 's/system' -- $argv
 
     if set -q _flag_help
-        printf "Usage of alert:\n\talert [msg] [title]"
-        printf "\n\t[-c | --cmd]:\n\t\tprints the command used to send alert"
+        printf "Usage of alert:\n\talert [msg] [title] [opts]"
+        printf "\n\t[-c | --cmd]:\n\t\tprints the command used to send alert and exit"
+        printf "\n\t[-s | --system]:\n\t\tcreate the alert using 'System Events'"
         return 0
     end
 
-    # appears on current space
-    # set cmd (printf "osascript -e 'tell app \"System Events\" to display dialog \"%s\" with title \"%s\"'" \
-        # "$argv[1]" "$argv[2]")
-
-    # appears on terminals space
-    set cmd (printf "osascript -e 'tell app \"Ghostty\" to display alert \"%s\" message \"%s\"'" \
+    if set -q _flag_system
+        set cmd (printf "osascript -e 'tell app \"System Events\" to display alert \"%s\" message \"%s\"'" \
         "$argv[2]" "$argv[1]")
+    else
+        set cmd (printf "osascript -e 'tell app \"Ghostty\" to display alert \"%s\" message \"%s\"'" \
+        "$argv[2]" "$argv[1]")
+    end
 
     if set -q _flag_cmd
         echo $cmd
@@ -152,6 +153,12 @@ function alert --description "Display an alert using osascript
 
     eval $cmd > /dev/null
 
+end
+
+function printIn --description "printIn COLOR MSG"
+    set_color $argv[1]
+    printf "%s" $argv[2]
+    set_color normal
 end
 
 #function extract --description "Expand or extract bundled & compressed files"
