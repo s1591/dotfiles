@@ -4,8 +4,8 @@
 # https://github.com/cpressland/dots/blob/main/macos_bootstrap.sh
 
 
-for module in (/bin/ls ./modules/)
-    source ./modules/$module
+for module in (/bin/ls ./modules/*.fish)
+    source ./$module
 end
 
 setup_dock
