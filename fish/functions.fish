@@ -117,12 +117,12 @@ function wttr --description "Display weather using wttr.in.
 end
 
 function alert --description "Display an alert using osascript
-                             (-h | --help for help)"
+                             [-h | --help for help]"
 
     argparse 'h/help' 'c/cmd' 's/system' -- $argv
 
     if set -q _flag_help
-        printf "Usage of alert:\n\talert [msg] [title] [opts]"
+        printf "Usage of alert:\n\talert (msg) (title) (opts)"
         printf "\n\t[-c | --cmd]:\n\t\tprints the command used to send alert and exit"
         printf "\n\t[-s | --system]:\n\t\tcreate the alert using 'System Events'"
         return 0
@@ -145,55 +145,36 @@ function alert --description "Display an alert using osascript
 
 end
 
-function printIn --description "printIn COLOR MSG"
-    set_color $argv[1]
-    printf "%s" $argv[2]
-    set_color normal
-end
+function printIn --description "printIn [-h | --help]"
 
-#function extract --description "Expand or extract bundled & compressed files"
-#    set argLen (count $argv)
-#
-#    if test $argLen -lt 1
-#        echo "no archive name given"
-#        return 1
-#    end
-#
-#    if test -e $argv[1]
-#        set ext (echo $argv[1] | awk -F. '{print $NF}')
-#        switch $ext
-#            case tar.xz
-#                tar -xvf "$argv[1]"
-#            case tar.bz2
-#                tar -jxvf "$argv[1]"
-#            case tar.gz
-#                tar -zxvf "$argv[1]"
-#            case bz2
-#                bunzip2 "$argv[1]"
-#            case dmg
-#                hdiutil mount "$argv[1]"
-#            case gz
-#                gunzip "$argv[1]"
-#            case tar
-#                tar -xvf "$argv[1]"
-#            case tbz2
-#                tar -jxvf "$argv[1]"
-#            case tgz
-#                tar -zxvf "$argv[1]"
-#            case zip
-#                unzip "$argv[1]"
-#            case pax
-#                cat "$1" | pax -r
-#            case pax.z
-#                uncompress "$1" --stdout | pax -r
-#            case rar 7z
-#                7z x "$argv[1]"
-#            case z
-#                uncompress "$argv[1]"
-#            case *
-#                echo "'$argv[1]' cannot be extracted/mounted via extract()"
-#        end
-#    else
-#        echo "'$argv[1]' is not a valid file"
-#    end
-#end
+    argparse 'h/help' 'w/with=' -- $argv
+
+    if test (count $argv) -lt 2 || set -q _flag_help
+        printf "Use set_color to print colored stuff:"
+        printf "\n\tprintIn color message (opts)"
+        printf "\n\t[-w | --with]:"
+        printf "\n\t\td: dim, o: bold, i: italics, u: underline"
+        printf "\n\nexamples:"
+        printf "\n\tprintIn red '%s' -w '%s'" "BOLD + UNDERLINE" "ou"
+        printf "\n\tprintIn red red"
+        printf "\n\nSome available colors:\n"
+        set_color -c
+        printf "\nSee: %s" "https://fishshell.com/docs/current/cmds/set_color.html"
+        return 0
+    end
+
+    if set -q _flag_with
+        set_color -$_flag_with $argv[1]
+    else
+        set_color $argv[1]
+    end
+
+    if test $status -ne 0
+        return 1
+    end
+
+    printf "%s" $argv[2]
+
+    set_color normal
+
+end
