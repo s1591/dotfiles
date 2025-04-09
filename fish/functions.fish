@@ -124,7 +124,7 @@ function alert --description "Display an alert using osascript
     if set -q _flag_help
         printf "Usage of alert:\n\talert (msg) (title) (opts)"
         printf "\n\t[-c | --cmd]:\n\t\tprints the command used to send alert and exit"
-        printf "\n\t[-s | --system]:\n\t\tcreate the alert using 'System Events'"
+        echo -e "\n\t[-s | --system]:\n\t\tcreate the alert using 'System Events'"
         return 0
     end
 
@@ -173,17 +173,15 @@ function printIn --description "printIn [-h | --help]"
             (printIn red 'BOLD + UNDERLINE' -w 'ou' -c)
         printf "\n\t%s: b<COLOR> should always come at end since whatever is after b is interpreted as a color" \
             (printIn red note -w 'u')
-        printf "\n\nNamed colors you can use(br = bright):\n"
-        set_color -c
-        printf "\nSee: %s" "https://fishshell.com/docs/current/cmds/set_color.html"
+        echo -e "\n\nSee: https://fishshell.com/docs/current/cmds/set_color.html"
         return 0
     end
 
     if set -q _flag_cmd
         if set -q _flag_with
-            set cmd (printf "set_color -$_flag_with $argv[1]; echo '$argv[2]'; set_color normal")
+            set cmd (printf "set_color -$_flag_with $argv[1]; echo \"$argv[2]\"; set_color normal")
         else
-            set cmd (printf "set_color $argv[1]; echo '$argv[2]';set_color normal")
+            set cmd (printf "set_color $argv[1]; echo \"$argv[2]\";set_color normal")
         end
         echo $cmd
         return 0
