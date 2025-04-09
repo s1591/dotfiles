@@ -185,7 +185,7 @@ function printIn --description "printIn [-h | --help]"
         else
             set cmd (printf "set_color $argv[1]; echo '$argv[2]';set_color normal")
         end
-        printf $cmd
+        echo $cmd
         return 0
     end
 
@@ -199,7 +199,7 @@ function printIn --description "printIn [-h | --help]"
         return 1
     end
 
-    printf "%s" $argv[2]
+    echo $argv[2]
 
     set_color normal
 
