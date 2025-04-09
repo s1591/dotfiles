@@ -153,7 +153,7 @@ function printIn --description "printIn [-h | --help]"
         printf "printIn uses set_color to print colored stuff:"
         printf "\n\tprintIn color message (opts)"
         printf "\n\t[-w | --with]:"
-        printf "\n\t\td: dim, o: bold, i: italics, u: underline, r: reverse mode,b<COLOR>: background color"
+        printf "\n\t\td: dim, o: bold, i: italics, u: underline, r: reverse mode, b<COLOR>: background color"
         printf "\n\t[-c | --cmd]:"
         printf "\n\t\tprint the equivalent set_color command and exit"
         printf "\n\t[-h | --help]:"
@@ -169,10 +169,10 @@ function printIn --description "printIn [-h | --help]"
             (printIn black hihihihi -w 'oubblue')
         printf "\n\tprintIn 000 'fishing' -w 'ub928' => %s" \
             (printIn 000 'fishing' -w 'ub928')
-        printf "\n\t%s: b<COLOR> should always come at end since whatever is after b is interpreted as a color" \
-            (printIn red note -w 'u')
         printf "\n\tprintIn red 'BOLD + UNDERLINE' -w 'ou' -c => %s" \
             (printIn red 'BOLD + UNDERLINE' -w 'ou' -c)
+        printf "\n\t%s: b<COLOR> should always come at end since whatever is after b is interpreted as a color" \
+            (printIn red note -w 'u')
         printf "\n\nNamed colors you can use(br = bright):\n"
         set_color -c
         printf "\nSee: %s" "https://fishshell.com/docs/current/cmds/set_color.html"
