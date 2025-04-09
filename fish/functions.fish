@@ -199,7 +199,7 @@ function printIn --description "printIn [-h | --help]"
         return 1
     end
 
-    echo $argv[2]
+    printf $argv[2]
 
     set_color normal
 
