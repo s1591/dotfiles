@@ -147,19 +147,45 @@ end
 
 function printIn --description "printIn [-h | --help]"
 
-    argparse 'h/help' 'w/with=' -- $argv
+    argparse 'h/help' 'c/cmd' 'w/with=' -- $argv
 
-    if test (count $argv) -lt 2 || set -q _flag_help
-        printf "Use set_color to print colored stuff:"
+    if test (count $argv) -lt 2 || set -q _flag_help # caos
+        printf "printIn uses set_color to print colored stuff:"
         printf "\n\tprintIn color message (opts)"
         printf "\n\t[-w | --with]:"
-        printf "\n\t\td: dim, o: bold, i: italics, u: underline"
+        printf "\n\t\td: dim, o: bold, i: italics, u: underline, r: reverse mode,b<COLOR>: background color"
+        printf "\n\t[-c | --cmd]:"
+        printf "\n\t\tprint the equivalent set_color command and exit"
+        printf "\n\t[-h | --help]:"
+        printf "\n\t\tdisplay this and exit"
         printf "\n\nexamples:"
-        printf "\n\tprintIn red '%s' -w '%s'" "BOLD + UNDERLINE" "ou"
-        printf "\n\tprintIn red red"
-        printf "\n\nSome available colors:\n"
+        printf "\n\tprintIn red red => %s" \
+            (printIn red red)
+        printf "\n\tprintIn red red -w '%s' => %s" \
+            "r" (printIn red red -w 'r')
+        printf "\n\tprintIn red '%s' -w '%s' => %s" \
+            "BOLD + UNDERLINE" "ou" (printIn red 'BOLD + UNDERLINE' -w 'ou')
+        printf "\n\tprintIn black hihihihi -w 'oubblue' => %s" \
+            (printIn black hihihihi -w 'oubblue')
+        printf "\n\tprintIn 000 'fishing' -w 'ub928' => %s" \
+            (printIn 000 'fishing' -w 'ub928')
+        printf "\n\t%s: b<COLOR> should always come at end since whatever is after b is interpreted as a color" \
+            (printIn red note -w 'u')
+        printf "\n\tprintIn red 'BOLD + UNDERLINE' -w 'ou' -c => %s" \
+            (printIn red 'BOLD + UNDERLINE' -w 'ou' -c)
+        printf "\n\nNamed colors you can use(br = bright):\n"
         set_color -c
         printf "\nSee: %s" "https://fishshell.com/docs/current/cmds/set_color.html"
+        return 0
+    end
+
+    if set -q _flag_cmd
+        if set -q _flag_with
+            set cmd (printf "set_color -$_flag_with $argv[1]; echo '$argv[2]'; set_color normal")
+        else
+            set cmd (printf "set_color $argv[1]; echo '$argv[2]';set_color normal")
+        end
+        printf $cmd
         return 0
     end
 
