@@ -5,7 +5,7 @@
 
 
 for module in (/bin/ls ./modules/*.fish)
-    source ./$module
+    source $module
 end
 
 setup_dock
