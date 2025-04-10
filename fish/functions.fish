@@ -149,7 +149,7 @@ function printIn --description "printIn [-h | --help]"
 
     argparse 'h/help' 'c/cmd' 'w/with=' -- $argv
 
-    if test (count $argv) -lt 2 || set -q _flag_help # caos
+    if test (count $argv) -lt 2 || set -q _flag_help
         printf "printIn uses set_color to print colored stuff:"
         printf "\n\tprintIn color message (opts)"
         printf "\n\t[-w | --with]:"
