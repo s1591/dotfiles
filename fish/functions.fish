@@ -123,8 +123,8 @@ function alert --description "Display an alert using osascript
 
     if set -q _flag_help
         printf "Usage of alert:\n\talert (msg) (title) (opts)"
-        printf "\n\t[-c | --cmd]:\n\t\tprints the command used to send alert and exit"
-        echo -e "\n\t[-s | --system]:\n\t\tcreate the alert using 'System Events'"
+        printf "\n\t[-c | --cmd]\n\t\tprints the command used to send alert and exit"
+        echo -e "\n\t[-s | --system]\n\t\tcreate the alert using 'System Events'"
         return 0
     end
 
@@ -152,11 +152,11 @@ function printIn --description "printIn [-h | --help]"
     if test (count $argv) -lt 2 || set -q _flag_help
         printf "printIn uses set_color to print colored stuff:"
         printf "\n\tprintIn color message (opts)"
-        printf "\n\t[-w | --with]:"
+        printf "\n\t[-w | --with]"
         printf "\n\t\td: dim, o: bold, i: italics, u: underline, r: reverse mode, b<COLOR>: background color"
-        printf "\n\t[-c | --cmd]:"
+        printf "\n\t[-c | --cmd]"
         printf "\n\t\tprint the equivalent set_color command and exit"
-        printf "\n\t[-h | --help]:"
+        printf "\n\t[-h | --help]"
         printf "\n\t\tdisplay this and exit"
         printf "\n\nexamples:"
         printf "\n\tprintIn red red => %s" \
