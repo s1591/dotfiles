@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
 # https://macos-defaults.com
-# https://github.com/cpressland/dots/blob/main/macos_bootstrap.sh
+# inspired from https://github.com/cpressland/dots/blob/main/macos_bootstrap.sh
 
 
 for module in (/bin/ls ./modules/*.fish)

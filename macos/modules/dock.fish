@@ -22,6 +22,6 @@ function setup_dock
     defaults write com.apple.dock "show-process-indicators" -bool "true" &> /dev/null
     log "Enabled process indicators"
 
-    killall Dock
+    killall Dock &> /dev/null
     log "Restarted Dock"
 end
