@@ -11,3 +11,6 @@ end
 setup_dock
 setup_safari
 setup_finder
+
+printf "\n"
+log "Finished with $errCount error[s]." -n
