@@ -11,7 +11,12 @@ function log
         set errCount (math $errCount + 1)
     end
 
-    argparse 'n/nomark' -- $argv
+    argparse 't/title' 'n/nomark' -- $argv
+
+    if set -q _flag_title
+        printf "%s - %s\n" (date) (printIn red "--- $argv[1] ---")
+        return 0
+    end
 
     if set -q _flag_nomark
         printf "%s - %s\n" (date) $argv[1]
@@ -21,7 +26,7 @@ function log
 
 end
 
-# see set_color -c for named colors
+# see `set_color -c` for named colors
 function printIn
 
     set_color $argv[1]

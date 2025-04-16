@@ -1,5 +1,5 @@
 function setup_safari
-    log (printIn red "--- Setting up Safari ---") -n
+    log "Setting up Safari" -t
 
     defaults write com.apple.Safari "ShowFullURLInSmartSearchField" -bool "true" &> /dev/null
     log "Showing full URL in safari"
