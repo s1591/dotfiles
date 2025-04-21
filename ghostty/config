@@ -43,4 +43,4 @@ copy-on-select = clipboard
 keybind = global:cmd+grave_accent=toggle_quick_terminal
 
 # off, check, download
-auto-update = off
+auto-update = check
