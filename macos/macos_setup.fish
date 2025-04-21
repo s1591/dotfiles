@@ -14,4 +14,4 @@ setup_finder
 setup_menubar
 
 printf "\n"
-log "Finished with $errCount error[s]." -n
+log "Finished with $errCount error[s]." --nomark
