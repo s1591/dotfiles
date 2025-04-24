@@ -181,7 +181,7 @@ function printIn --description "printIn [-h | --help]"
         if set -q _flag_with
             set cmd (printf "set_color -$_flag_with $argv[1]; echo \"$argv[2]\"; set_color normal")
         else
-            set cmd (printf "set_color $argv[1]; echo \"$argv[2]\";set_color normal")
+            set cmd (printf "set_color $argv[1]; echo \"$argv[2]\"; set_color normal")
         end
         echo $cmd
         return 0
