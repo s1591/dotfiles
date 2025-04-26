@@ -29,7 +29,8 @@ cursor-opacity = 1
 cursor-text = black
 mouse-hide-while-typing = true
 
-font-family = jetBrainsMono Nerd Font
+font-family = Maple Mono NF
+font-feature = "cv01"
 font-size = 18
 
 macos-titlebar-style = transparent
