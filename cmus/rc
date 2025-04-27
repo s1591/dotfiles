@@ -1,0 +1,14 @@
+colorscheme rose-pine
+
+clear
+echo scanning music directory...
+add ~/Music/songs
+echo loaded music library 👍
+
+set mouse=true
+
+set status_display_program=cmusfm
+
+set show_current_bitrate=true
+
+bind -f common u shell cmus-remote -C "clear"; cmus-remote -C "add ~/Music/songs"; cmus-remote -C "update-cache -f"
