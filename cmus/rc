@@ -1,14 +1,20 @@
 colorscheme rose-pine
 
 clear
-echo scanning music directory...
 add ~/Music/songs
-echo loaded music library 👍
+echo scanning music directory...
+update-cache
+echo updating cache...
+echo loaded music library 🎉
 
 set mouse=true
+
+set progress_bar=line
 
 set status_display_program=cmusfm
 
 set show_current_bitrate=true
+
+set stop_after_queue=true
 
 bind -f common u shell cmus-remote -C "clear"; cmus-remote -C "add ~/Music/songs"; cmus-remote -C "update-cache -f"
