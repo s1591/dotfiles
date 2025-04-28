@@ -1,13 +1,13 @@
-colorscheme rose-pine
+colorscheme dracula
 
 clear
 add ~/Music/songs
 echo scanning music directory...
-update-cache
+update-cache -f
 echo updating cache...
 echo loaded music library 🎉
 
-set mouse=true
+set mouse=false
 
 set progress_bar=line
 

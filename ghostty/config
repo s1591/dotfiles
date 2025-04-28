@@ -30,7 +30,7 @@ cursor-text = black
 mouse-hide-while-typing = true
 
 font-family = jetBrainsMono Nerd Font
-font-feature = "zero, cv04, cv06, cv18, cv19, cv20"
+font-feature = "cv04, cv06, cv07, cv11, cv16, cv17, cv18, cv19, cv20, zero"
 font-size = 18
 
 macos-titlebar-style = transparent
