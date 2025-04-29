@@ -2,9 +2,7 @@ colorscheme dracula
 
 clear
 add ~/Music/songs
-echo scanning music directory...
 update-cache -f
-echo updating cache...
 echo loaded music library 🎉
 
 set mouse=false
@@ -17,4 +15,4 @@ set show_current_bitrate=true
 
 set stop_after_queue=true
 
-bind -f common u shell cmus-remote -C "clear"; cmus-remote -C "add ~/Music/songs"; cmus-remote -C "update-cache -f"
+bind -f common u shell cmus-remote -C "clear"; cmus-remote -C "add ~/Music/songs"; cmus-remote -C "update-cache -f"; cmus-remote -C "echo re-scanned music directory 👍"
