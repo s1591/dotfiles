@@ -18,7 +18,6 @@ background-blur = true
 # background-blur-radius = 29
 background-opacity = 0.9
 
-maximize = true
 window-decoration = true
 
 shell-integration-features = no-cursor
