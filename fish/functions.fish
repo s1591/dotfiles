@@ -26,7 +26,7 @@ function makebak
 end
 
 function available
-    command -v $argv[1] >/dev/null
+    command -v $argv[1] > /dev/null
 end
 
 function d --description "jump to a directory quickly using fzf or television"
