@@ -57,7 +57,7 @@ function d --description "jump to a directory quickly using fzf or television"
     end
 
     set dest (eval $fuzzy_finder)
-    if test $status -eq 0
+    if test $status -eq 0 && test $dest # exit status = 0 & dest should not be empty
         cd $dest
     else
         cd $currDir
