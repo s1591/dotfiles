@@ -25,30 +25,38 @@ function makebak
     cp $argv[1] $argv[1].bak
 end
 
-function avail
+function available
     command -v $argv[1] >/dev/null
 end
 
-function o --description "open a file quickly using fzf and $EDITOR"
-    set a (fd . -H --type f | fzf --prompt="\$ " --pointer="*" --preview 'bat --color=always --style=numbers --line-range=:500 {}')
-    if test $status -eq 0
-        switch $argv[1]
-            case $argv[1]
-                $argv[1] $a
-            case "*"
-                $EDITOR $a
-        end
-    end
-end
+function d --description "jump to a directory quickly using fzf or television"
 
-function d --description "jump to a directory quickly using fzf"
+    if not available fd
+        echo "fd not available"
+        return 1
+    end
+
     set currDir $PWD
+    set fd_for_directory "fd . --type d --max-depth 4"
+    set fd_for_hidden_directory "fd . --type d -H --max-depth 4"
+
+    if available tv
+        set fuzzy_finder_for_directory 'tv --preview "eza -a --icons=always --color=always {}"'
+    else if available fzf
+        set fuzzy_finder_for_directory 'fzf --prompt="\$" --pointer="*" --preview "ls {}"'
+    else
+        echo "fzf or television not found"
+        return 1
+    end
+
     switch $argv[1]
         case h
-            set dest (fd . --type d -H --max-depth 4 | fzf --prompt="\$ " --pointer="*" --preview 'ls {}')
+            set fuzzy_finder (echo "$fd_for_hidden_directory | $fuzzy_finder_for_directory")
         case "*"
-            set dest (fd . --type d --max-depth 4 | fzf --prompt="\$ " --pointer="*" --preview 'ls {}')
+            set fuzzy_finder (echo "$fd_for_directory | $fuzzy_finder_for_directory")
     end
+
+    set dest (eval $fuzzy_finder)
     if test $status -eq 0
         cd $dest
     else
