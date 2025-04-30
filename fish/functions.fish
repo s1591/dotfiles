@@ -26,13 +26,15 @@ function makebak
 end
 
 function available
-    command -v $argv[1] > /dev/null
+    # command -v $argv[1] > /dev/null
+    type -q $argv[1]
+    return $status
 end
 
 function d --description "jump to a directory quickly using fzf or television"
 
-    if not available fd
-        echo "fd not available"
+    if not available fd; and not available tv; or not available fzf
+        echo "make sure to have fd, tv/fzf"
         return 1
     end
 
@@ -42,11 +44,8 @@ function d --description "jump to a directory quickly using fzf or television"
 
     if available tv
         set fuzzy_finder_for_directory 'tv --preview "eza -a --icons=always --color=always {}"'
-    else if available fzf
-        set fuzzy_finder_for_directory 'fzf --prompt="\$" --pointer="*" --preview "ls {}"'
     else
-        echo "fzf or television not found"
-        return 1
+        set fuzzy_finder_for_directory 'fzf --prompt="\$" --pointer="*" --preview "ls {}"'
     end
 
     switch $argv[1]
@@ -57,11 +56,12 @@ function d --description "jump to a directory quickly using fzf or television"
     end
 
     set dest (eval $fuzzy_finder)
-    if test $status -eq 0 && test $dest # exit status = 0 & dest should not be empty
+    if test $status -eq 0 && test $dest # exit status = 0(for fzf) & dest should not be empty(for tv)
         cd $dest
     else
         cd $currDir
     end
+
 end
 
 function test_letters --description "see how current font displays numbers, letters and some ligatures
