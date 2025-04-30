@@ -31,7 +31,24 @@ function available
     return $status
 end
 
-function d --description "jump to a directory quickly using fzf or television"
+function d --description "jump to a directory/file quickly using fzf or television
+                         [-h for help]"
+
+    argparse 'h/help' 'f/files' 'c/cmd' -- $argv
+
+    if set -q _flag_help
+        printf "Usage of d:"
+        printf "\n\td (opts)"
+        printf "\n\t[h or .]:"
+        printf "\n\t\tinclude hidden directories(or files if -f is toggled)"
+        printf "\n\t[-f | --files]"
+        printf "\n\t\tinclude only files"
+        printf "\n\t[-c | --cmd]"
+        printf "\n\t\tprint the command used and exit"
+        printf "\n\t[-h | --help]"
+        echo -e "\n\t\tshow this and exit"
+        return 0
+    end
 
     if not available fd; and not available tv; or not available fzf
         echo "make sure to have fd, tv/fzf"
@@ -41,23 +58,50 @@ function d --description "jump to a directory quickly using fzf or television"
     set currDir $PWD
     set fd_for_directory "fd . --type d --max-depth 4"
     set fd_for_hidden_directory "fd . --type d -H --max-depth 4"
+    set fd_for_files "fd . --type f --max-depth 4"
+    set fd_for_hidden_files "fd . --type f -H --max-depth 4"
 
     if available tv
-        set fuzzy_finder_for_directory 'tv --preview "eza -a --icons=always --color=always {}"'
+        if set -q _flag_files
+            set fuzzy_finder_for_files 'tv --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+        else
+            set fuzzy_finder_for_directory 'tv --preview "eza -a --icons=always --color=always {}"'
+        end
     else
-        set fuzzy_finder_for_directory 'fzf --prompt="\$" --pointer="*" --preview "ls {}"'
+        if set -q _flag_files
+            set fuzzy_finder_for_files 'fzf --prompt="\$ " --pointer="*" --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+        else
+            set fuzzy_finder_for_directory 'fzf --prompt="\$" --pointer="*" --preview "ls {}"'
+        end
     end
 
     switch $argv[1]
-        case h
-            set fuzzy_finder (echo "$fd_for_hidden_directory | $fuzzy_finder_for_directory")
+        case h .
+            if set -q _flag_files
+                set fuzzy_finder (echo "$fd_for_hidden_files | $fuzzy_finder_for_files")
+            else
+                set fuzzy_finder (echo "$fd_for_hidden_directory | $fuzzy_finder_for_directory")
+            end
         case "*"
-            set fuzzy_finder (echo "$fd_for_directory | $fuzzy_finder_for_directory")
+            if set -q _flag_files
+                set fuzzy_finder (echo "$fd_for_files | $fuzzy_finder_for_files")
+            else
+                set fuzzy_finder (echo "$fd_for_directory | $fuzzy_finder_for_directory")
+            end
+    end
+
+    if set -q _flag_cmd
+        echo $fuzzy_finder
+        return 0
     end
 
     set dest (eval $fuzzy_finder)
     if test $status -eq 0 && test $dest # exit status = 0(for fzf) & dest should not be empty(for tv)
-        cd $dest
+        if set -q _flag_files
+            $EDITOR $dest
+        else
+            cd $dest
+        end
     else
         cd $currDir
     end
