@@ -36,6 +36,8 @@ function d --description "jump to a directory/file quickly using fzf or televisi
 
     argparse 'h/help' 'f/files' 'c/cmd' -- $argv
 
+    set prefered "tv" #fzf
+
     if set -q _flag_help
         printf "Usage of d:"
         printf "\n\td (opts)"
@@ -61,7 +63,7 @@ function d --description "jump to a directory/file quickly using fzf or televisi
     set fd_for_files "fd . --type f --max-depth 4"
     set fd_for_hidden_files "fd . --type f -H --max-depth 4"
 
-    if available tv
+    if available $prefered; and test $prefered = "tv"
         if set -q _flag_files
             set fuzzy_finder_for_files 'tv --preview "bat --color=always --style=numbers --line-range=:500 {}"'
         else
