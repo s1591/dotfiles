@@ -34,9 +34,9 @@ end
 function d --description "jump to a directory/file quickly using fzf or television
                          [-h for help]"
 
-    # alternatively see https://github.com/alexpasmantier/television/blob/main/docs/channels.md, which is much easier.
+    # alternatively https://github.com/alexpasmantier/television/blob/main/docs/channels.md, which is much easier.
     # cd (tv dirs), tv custom_channel...
-    # I want it to be in this function though.
+    # this function exists to not to be dependent on configuration of tv or fzf
 
     argparse 'h/help' 'f/files' 'c/cmd' -- $argv
 
