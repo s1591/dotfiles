@@ -218,7 +218,7 @@ function printIn --description "printIn [-h | --help]"
         echo -e "\tprintIn red 'Hello, World!'\n"
         echo -e "\tprintIn red 'Bold and Underlined' -w 'ou'\n"
         echo -e "\tprintIn black 'Background color' -w 'ub928'\n"
-        echo -e "\nFor more details, see: https://fishshell.com/docs/current/cmds/set_color.html"
+        echo -e "\nsee: https://fishshell.com/docs/current/cmds/set_color.html"
         return 0
     end
 
