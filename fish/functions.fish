@@ -44,7 +44,7 @@ function d --description "jump to a directory/file quickly using fzf or televisi
         printf "Usage of d:"
         printf "\n\td (opts)"
         printf "\n\t[h or .]:"
-        printf "\n\t\tinclude hidden directories(or files if -f is toggled)"
+        printf "\n\t\tinclude hidden directories(or files if -f is used)"
         printf "\n\t[-f | --files]"
         printf "\n\t\tinclude only files"
         printf "\n\t[-c | --cmd]"
