@@ -9,8 +9,6 @@ set mouse=false
 
 set progress_bar=line
 
-set status_display_program=cmusfm
-
 set show_current_bitrate=true
 
 set stop_after_queue=true
