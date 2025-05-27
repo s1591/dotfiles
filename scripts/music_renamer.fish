@@ -1,5 +1,7 @@
 #!/usr/bin/env fish
 
+# remove track number and append artist name.
+
 set cat "/bin/cat"
 set track_data_file (mktemp)
 
@@ -27,8 +29,6 @@ function rename_track
     set current_track $argv[1]
     set ext (__get_track_ext $current_track)
 
-    __save_track_info $current_track
-
     # remove track number
     set removed_track_number ($cat $track_data_file | rg "Title" | choose -f ": " -1)
 
@@ -53,14 +53,13 @@ function rename_track
         set no_tags $argv[1] $no_tags
         return 1
     else if test -e "$final_track_name"
-        set already_exists $already_exists $final_track_name
+        set already_exists $already_exists "Skipped $current_track as \"$final_track_name\" already exist"
         return 1
     else
         mv $current_track $final_track_name
-        echo "$current_track -> $final_track_name"
+        echo "$current_track -> \"$final_track_name\""
     end
 
-    __remove_track_info
     return 0
 
 end
@@ -68,18 +67,20 @@ end
 # --- exec ---
 
 for track in (fd -e m4a -e mp3)
+    __save_track_info $track
     rename_track $track
+    __remove_track_info
 end
 
 if test (count $no_tags) -ne 0
-    echo -e "\n--- No valid artist tags for ---\n"
+    echo -e "\n--- No valid artist tags ---\n"
     for track in $no_tags
         echo $track
     end
 end
 
 if test (count $already_exists) -ne 0
-    echo -e "\n--- Skipped as these already exist ---\n"
+    echo -e "\n--- Skipped ---\n"
     for track in $already_exists
         echo $track
     end
