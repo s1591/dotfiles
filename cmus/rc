@@ -14,3 +14,9 @@ set show_current_bitrate=true
 set stop_after_queue=true
 
 bind -f common u shell cmus-remote -C "clear"; cmus-remote -C "add ~/Music/songs"; cmus-remote -C "update-cache -f"; cmus-remote -C "echo re-scanned music directory 👍"
+
+bind -f common n player-next
+bind -f common N player-next-album
+
+# unbind common b
+# unbind common B

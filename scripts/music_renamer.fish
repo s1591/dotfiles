@@ -6,6 +6,10 @@ set track_data_file (mktemp)
 set no_tags
 set already_exists
 
+function __get_track_ext
+    echo $argv[1] | choose -f "[.]" -1
+end
+
 function __save_track_info
     exiftool $argv[1] > $track_data_file
 end
@@ -21,6 +25,9 @@ function rename_track
 
     set artist
     set current_track $argv[1]
+    set ext (__get_track_ext $current_track)
+
+    __save_track_info $current_track
 
     # remove track number
     set removed_track_number ($cat $track_data_file | rg "Title" | choose -f ": " -1)
@@ -29,52 +36,39 @@ function rename_track
     # Artist > Album Artist > Sort artist
     set artist (string trim ($cat $track_data_file | rg "^Artist\s{2,}" | choose -f ": " -1))
     if test -n "$artist"
-        set final_track_name "$artist - $removed_track_number.m4a"
-        if test -e "$final_track_name"
-            set already_exists $already_exists $final_track_name
-            return 1
-        end
-        mv $current_track $final_track_name
-        echo "$current_track -> $final_track_name"
-        return 0
+        set final_track_name "$artist - $removed_track_number.$ext"
     end
 
     set artist (string trim ($cat $track_data_file | rg "^Album Artist" | choose -f ": " -1))
     if test -n "$artist"
-        set final_track_name "$artist - $removed_track_number.m4a"
-        if test -e "$final_track_name"
-            set already_exists $already_exists $final_track_name
-            return 1
-        end
-        mv $current_track $final_track_name
-        echo "$current_track -> $final_track_name"
-        return 0
+        set final_track_name "$artist - $removed_track_number.$ext"
     end
 
     set artist (string trim ($cat $track_data_file | rg "^Sort Artist" | choose -f ": " -1))
     if test -n "$artist"
-        set final_track_name "$artist - $removed_track_number.m4a"
-        if test -e "$final_track_name"
-            set already_exists $already_exists $final_track_name
-            return 1
-        end
-        mv $current_track $final_track_name
-        echo "$current_track -> $final_track_name"
-        return 0
+        set final_track_name "$artist - $removed_track_number.$ext"
     end
 
-    set no_tags $argv[1] $no_tags
+    if test -n "$artist"
+        set no_tags $argv[1] $no_tags
+        return 1
+    else if test -e "$final_track_name"
+        set already_exists $already_exists $final_track_name
+        return 1
+    else
+        mv $current_track $final_track_name
+        echo "$current_track -> $final_track_name"
+    end
 
-    return 1
+    __remove_track_info
+    return 0
 
 end
 
 # --- exec ---
 
-for track in (fd -e m4a)
-    __save_track_info $track
+for track in (fd -e m4a -e mp3)
     rename_track $track
-    __remove_track_info
 end
 
 if test (count $no_tags) -ne 0
