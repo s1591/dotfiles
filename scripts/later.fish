@@ -31,6 +31,8 @@ function remove_links
         for needs_to_remove in $selected
             if test $needs_to_remove != $link
                 echo $link >> $tmp
+            else
+                echo "Removed $needs_to_remove"
             end
         end
     end
