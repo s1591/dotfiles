@@ -28,12 +28,10 @@ function remove_links
     set tmp (mktemp)
 
     for link in ($cat $storage_folder/$storage)
-        for needs_to_remove in $selected
-            if test $needs_to_remove != $link
-                echo $link >> $tmp
-            else
-                echo "Removed $needs_to_remove"
-            end
+        if not contains $link $selected
+            echo $link >> $tmp
+        else
+            echo "Removed $link"
         end
     end
 
@@ -57,6 +55,7 @@ function save_link
         return 0
     end
     echo $url >> $storage_folder/$storage
+    echo "added $url"
 end
 
 
