@@ -9,7 +9,7 @@ set storage later_links.txt
 function help
     echo -e "Save urls for later reads(requires fzf + rg), tab to multi-select."
     echo -e "Usage:"
-    echo -e "\tlater -a <URL>: add url"
+    echo -e "\tlater -a <URL1> -a <URL2>: add url[s]"
     echo -e "\tlater -r: remove url"
 end
 
