@@ -1,16 +1,21 @@
 #!/usr/bin/env fish
 
-argparse 'a/add=+' 'r/remove' 'h/help' -- $argv
+argparse 'a/add=+' 'r/remove' 'e/edit' 'h/help' -- $argv
 
 set cat "/bin/cat"
-set storage_folder ~/Documents/scripts/helpers
-set storage later_links.txt
+set storage_folder "$HOME/Documents/scripts/helpers"
+set storage "later_links.txt"
 
 function help
-    echo -e "Save urls for later reads(requires fzf + rg), tab to multi-select."
+    echo -e "Save urls for later reads, tab to multi-select. (requires fzf + rg)"
     echo -e "Usage:"
     echo -e "\tlater -a <URL1> -a <URL2>: add url[s]"
     echo -e "\tlater -r: remove url"
+    echo -e "\tlater -e: edit storage with `$EDITOR`"
+end
+
+function edit_storage
+    $EDITOR $storage_folder/$storage
 end
 
 function open_link
@@ -43,7 +48,7 @@ function duplicate
 end
 
 function save_link
-    set url $argv[1]
+    set url (string trim $argv[1])
 
     if not test -e $storage_folder/$storage
         mkdir -p $storage_folder
@@ -66,6 +71,11 @@ if set -q _flag_help
     return 0
 end
 
+if set -q _flag_edit
+    edit_storage
+    return 0
+end
+
 if set -q _flag_add
     for link in $_flag_add
         save_link $link
@@ -73,8 +83,15 @@ if set -q _flag_add
     return 0
 end
 
-if not test -e "$storage_folder/$storage"; or test (count ($cat $storage_folder/$storage)) -eq 0
-    echo "No links!"
+if not test -e "$storage_folder/$storage"
+    echo "'$storage_folder/$storage' doesn't exist!"
+    echo "'later -a <url>' to get started, or 'later -e' and paste the the urls(one per line)."
+    return 0
+end
+
+if test (count ($cat $storage_folder/$storage)) -eq 0
+    echo "No link[s] in '$storage_folder/$storage'!"
+    echo "'later -a <url>' to get started, or 'later -e' and paste the the urls(one per line)."
     return 0
 end
 
