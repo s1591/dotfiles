@@ -63,7 +63,6 @@ function save_link
     echo "added $url"
 end
 
-
 # --- exec ---
 
 if set -q _flag_help
