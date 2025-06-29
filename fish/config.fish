@@ -6,6 +6,7 @@ set -U fish_user_paths /opt/homebrew/bin /opt/homebrew/sbin /usr/local/go/bin $H
 
 set -U EDITOR nvim
 set -U PYENV_ROOT $HOME/.pyenv
+set -U DOTNET_ROOT /usr/local/share/dotnet
 set -U FZF_DEFAULT_COMMAND fd
 set -U FZF_DEFAULT_OPTS "\
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
