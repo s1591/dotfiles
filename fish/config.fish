@@ -2,7 +2,7 @@ set fish_greeting
 fish_default_key_bindings
 
 set -e fish_user_paths
-set -U fish_user_paths /opt/homebrew/bin /opt/homebrew/sbin /usr/local/go/bin $HOME/go/bin $HOME/bin $PYENV_ROOT/bin $PYENV_ROOT/shims $HOME/Documents/scripts /opt/homebrew/opt/openjdk@21/bin/ $fish_user_paths
+set -U fish_user_paths /opt/homebrew/bin /opt/homebrew/sbin /usr/local/go/bin $HOME/go/bin $HOME/bin $PYENV_ROOT/bin $PYENV_ROOT/shims $HOME/Documents/scripts /opt/homebrew/opt/openjdk@21/bin/ $HOME/.local/share/nvim/mason/bin $fish_user_paths
 
 set -U EDITOR nvim
 set -U PYENV_ROOT $HOME/.pyenv

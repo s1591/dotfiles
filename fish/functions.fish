@@ -246,3 +246,32 @@ function printIn --description "printIn [-h | --help]"
 
     set_color normal
 end
+
+function crun --description "Runs programs based on flags passed"
+
+    argparse 'd/dotnet' 'g/go' 'b/build' -- $argv
+
+    set GO_RUN "go run ."
+    set GO_BUILD "go build"
+    set DOTNET_RUN "dotnet run"
+    set DOTNET_BUILD "dotnet build"
+
+    function run
+        set run_cmd $argv[1]
+        set build_cmd $argv[2]
+        if test "$argv[3]" != ""
+            echo -e "Building with `$build_cmd`\n"
+            eval $build_cmd
+        else
+            echo -e "Running with `$run_cmd`\n"
+            eval $run_cmd
+        end
+    end
+
+    if set -q _flag_dotnet
+        run $DOTNET_RUN $DOTNET_BUILD $_flag_build
+    else if set -q _flag_go
+        run $GO_RUN $GO_BUILD $_flag_build
+    end
+
+end

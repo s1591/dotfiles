@@ -11,7 +11,6 @@ local M = {}
 
 M.ui = {
     theme = "catppuccin",
-    -- theme_toggle = { "palenight", "catppuccin" },
     transparency = true,
 
     hl_override = {
