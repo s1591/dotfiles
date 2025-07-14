@@ -67,9 +67,9 @@ function d --description "jump to a directory/file quickly using fzf or televisi
 
     if available tv
         if set -q _flag_files
-            set fuzzy_finder_for_files 'tv --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+            set fuzzy_finder_for_files 'tv -p "bat --color=always --style=numbers --line-range=:500 {}"'
         else
-            set fuzzy_finder_for_directory 'tv --preview "eza -a --icons=always --color=always {}"'
+            set fuzzy_finder_for_directory 'tv -p "eza -a --icons=always --color=always {}"'
         end
     else
         if set -q _flag_files
