@@ -87,7 +87,9 @@ return{
                     c = { "cd $dir && gcc $fileName && ./a.out && rm ./a.out" },
                     go = { "cd $dir && go run ." },
                     cs = { "cd $dir && dotnet run" },
-                    --rust = { "cd $dir && rustc $fileName && ./$fileNameWithoutExt && rm ./$fileNameWithoutExt" },
+                    typescript = { "cd $dir && node $fileName" },
+                    javascript = { "cd $dir && node $fileName" },
+                    rust = { "cd $dir && rustc $fileName && ./$fileNameWithoutExt && rm ./$fileNameWithoutExt" },
                 },
             }
         end,

@@ -23,4 +23,11 @@ end
 
 set -e config_files
 
-starship init fish | source
+
+if set -q SSH_CONNECTION
+    # ssh prompt
+else
+    set -gx STARSHIP_CONFIG $HOME/.config/starship.toml
+    starship init fish | source
+end
+
