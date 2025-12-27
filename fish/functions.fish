@@ -246,3 +246,15 @@ function printIn --description "printIn [-h | --help]"
 
     set_color normal
 end
+
+function notify
+
+    argparse 'm/msg=' -- $argv
+
+    if set -q _flag_msg
+        shortcuts run Notify -i $_flag_msg;
+    else
+        shortcuts run Notify
+    end
+
+end
