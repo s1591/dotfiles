@@ -30,7 +30,7 @@ function check_for
 
     if set -q _flag_s
         if not test -d $source_dir
-            log "Source directory '$source_dir' doesn't exist."
+            log "Directory '$source_dir' doesn't exist."
             exit 1
         end
     end

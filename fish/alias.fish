@@ -16,6 +16,9 @@ alias ps="procs"
 alias cat="bat"
 alias nq="networkQuality"
 
+alias mysqlrun="/opt/homebrew/opt/mysql/bin/mysqld_safe --datadir\=/opt/homebrew/var/mysql"
+alias mysqlstop="mysqladmin -u root -p shutdown"
+
 alias save="source ~/.config/fish/config.fish"
 alias fishconfig="$EDITOR ~/.config/fish/config.fish"
 alias fishalias="$EDITOR ~/.config/fish/alias.fish"
