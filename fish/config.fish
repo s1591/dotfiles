@@ -32,3 +32,8 @@ else
 end
 
 starship init fish | source
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/s3625/.lmstudio/bin
+# End of LM Studio CLI section
+

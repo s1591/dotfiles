@@ -22,7 +22,7 @@ bind ! __history_previous_command
 bind '$' __history_previous_command_arguments
 
 function makebak
-    cp $argv[1] $argv[1].bak
+    cp -rv $argv[1] $argv[1].bak
 end
 
 function available
